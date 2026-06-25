@@ -98,8 +98,8 @@ export default function HomePage() {
               Considered, minimal interfaces that respect your attention.
             </li>
             <li>
-              <strong>UK registered</strong>
-              {company.jurisdiction}, Company No. {company.companyNumber}.
+              <strong>Secure by default</strong>
+              Encrypted storage, least-privilege access and no data harvesting.
             </li>
           </ul>
         </div>
