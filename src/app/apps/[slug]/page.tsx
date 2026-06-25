@@ -110,7 +110,7 @@ export default function AppPage({ params }: { params: { slug: string } }) {
       </section>
 
       {/* Features */}
-      <section className="section">
+      <section className={styles.highlights}>
         <div className="container">
           <span className="eyebrow">What it does</span>
           <h2 className="section-title">Highlights</h2>
@@ -126,7 +126,7 @@ export default function AppPage({ params }: { params: { slug: string } }) {
       </section>
 
       {/* Screenshots */}
-      <section className={styles.shots}>
+      <section className="section">
         <div className="container">
           <span className="eyebrow">A closer look</span>
           <h2 className="section-title">Screenshots</h2>
