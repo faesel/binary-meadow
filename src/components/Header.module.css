@@ -1,0 +1,112 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.mark {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.brandName {
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+
+.brandAccent {
+  color: var(--green-600);
+}
+
+.navDesktop {
+  display: none;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.navLink {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--body);
+  transition: color 0.15s ease;
+}
+
+.navLink:hover {
+  color: var(--green-700);
+}
+
+.faeselLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem;
+  border-radius: 8px;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.faeselLink:hover {
+  opacity: 0.7;
+  transform: translateY(-1px);
+}
+
+.faeselLogo {
+  width: auto;
+  height: 30px;
+}
+
+.faeselLogoMobile {
+  width: auto;
+  height: 32px;
+}
+
+.toggle {
+  display: inline-flex;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: var(--ink);
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.navMobile {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1.5rem 1.25rem;
+  border-top: 1px solid var(--line);
+  background: #fff;
+}
+
+.navLinkMobile {
+  padding: 0.85rem 0;
+  font-weight: 600;
+  border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 768px) {
+  .navDesktop {
+    display: flex;
+  }
+  .toggle,
+  .navMobile {
+    display: none;
+  }
+}

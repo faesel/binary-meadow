@@ -1,0 +1,26 @@
+.group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.btn {
+  position: relative;
+}
+
+.sm .btn {
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+}
+
+.soon {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--green-200);
+  color: var(--green-800);
+  padding: 0.12rem 0.4rem;
+  border-radius: 999px;
+  margin-left: 0.15rem;
+}

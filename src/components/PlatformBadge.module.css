@@ -1,0 +1,26 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.32rem 0.7rem;
+  border-radius: 999px;
+  background: var(--green-100);
+  color: var(--green-800);
+  border: 1px solid var(--green-200);
+  white-space: nowrap;
+}
+
+.badge[data-platform='android'] {
+  background: #e8f3ec;
+  color: #1d6b4a;
+  border-color: #c4e3d2;
+}
+
+.badge[data-platform='macos'],
+.badge[data-platform='windows'] {
+  background: #e6f6fa;
+  color: #0d6878;
+  border-color: #bfe7ef;
+}

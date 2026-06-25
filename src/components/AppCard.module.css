@@ -1,0 +1,100 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: var(--app-accent, var(--green-500));
+  opacity: 0.9;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+  border-color: var(--green-200);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.icon {
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.45rem;
+}
+
+.group {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.platforms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: flex-end;
+}
+
+.name {
+  font-size: 1.45rem;
+  margin-bottom: 0.35rem;
+}
+
+.name a:hover {
+  color: var(--green-700);
+}
+
+.tagline {
+  font-weight: 600;
+  color: var(--app-accent, var(--green-700));
+  margin-bottom: 0.75rem;
+}
+
+.summary {
+  color: var(--muted);
+  font-size: 0.96rem;
+  flex: 1;
+  margin-bottom: 1.5rem;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.learn {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--green-700);
+}
+
+.learn:hover {
+  color: var(--green-900);
+}
