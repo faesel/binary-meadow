@@ -17,12 +17,13 @@ export function generateStaticParams() {
   return apps.map((app) => ({ slug: app.slug }));
 }
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
-}): Metadata {
-  const app = getApp(params.slug);
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const app = getApp(slug);
   if (!app) return {};
   const url = `/apps/${app.slug}/`;
   const ogImage = `/og/${app.slug}.png`;
@@ -47,8 +48,13 @@ export function generateMetadata({
   };
 }
 
-export default function AppPage({ params }: { params: { slug: string } }) {
-  const app = getApp(params.slug);
+export default async function AppPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const app = getApp(slug);
   if (!app) notFound();
 
   const group = platformGroup(app.platforms);
