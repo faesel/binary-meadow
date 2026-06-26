@@ -7,7 +7,7 @@ export const company = {
   url: 'https://www.binarymeadow.com',
   email: 'hello@binarymeadow.com',
   // UK company registration details — replace placeholders with the official record.
-  companyNumber: '00000000',
+  companyNumber: '17302587',
   registeredOffice: 'London, United Kingdom',
   jurisdiction: 'Registered in England and Wales',
   founderName: 'Faesel Saeed',
