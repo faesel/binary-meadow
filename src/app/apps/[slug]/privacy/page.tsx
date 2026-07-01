@@ -80,15 +80,14 @@ export default async function AppPrivacyPage({
           </p>
 
           <h2>Children’s privacy</h2>
-          <p>
-            {app.name} is not directed at children under 13, and we do not
-            knowingly collect personal data from children.
-          </p>
+          <p>{app.privacy.childrenNote}</p>
 
           <h2>Your rights</h2>
           <p>
-            Under UK GDPR you have rights regarding any personal data we may
-            hold. To exercise these rights or ask a question about this policy,
+            Because {app.name} does not collect or hold your personal data,
+            there is no personal information for us to access, correct, or
+            delete on your behalf. If you would like to understand more about
+            your rights under UK GDPR, or have any question about this policy,
             contact us at{' '}
             <a href={`mailto:${company.email}`}>{company.email}</a>.
           </p>
@@ -97,13 +96,6 @@ export default async function AppPrivacyPage({
           <p>
             We may update this policy as {app.name} evolves. Material changes
             will be reflected on this page with a revised “last updated” date.
-          </p>
-
-          <h2>Contact</h2>
-          <p>
-            {company.name}, {company.registeredOffice}. {company.jurisdiction},
-            Company No. {company.companyNumber}. Email{' '}
-            <a href={`mailto:${company.email}`}>{company.email}</a>.
           </p>
         </div>
       </div>

@@ -137,23 +137,41 @@ export default async function AppPage({
           <span className="eyebrow">A closer look</span>
           <h2 className="section-title">Screenshots</h2>
           {app.screenshots.length > 0 ? (
-            <div className={styles.shotGrid}>
+            <div
+              className={`${styles.shotGrid} ${
+                group === 'Mobile' ? styles.shotGridMobile : ''
+              }`}
+            >
               {app.screenshots.map((s) => (
-                <figure key={s.src} className={styles.shot}>
+                <figure
+                  key={s.src}
+                  className={`${styles.shot} ${
+                    group === 'Mobile' ? styles.shotMobile : ''
+                  }`}
+                >
                   <Image
                     src={s.src}
                     alt={s.alt}
-                    width={1280}
-                    height={800}
+                    width={group === 'Mobile' ? 400 : 1280}
+                    height={group === 'Mobile' ? 866 : 800}
                     className={styles.shotImg}
                   />
                 </figure>
               ))}
             </div>
           ) : (
-            <div className={styles.shotGrid}>
+            <div
+              className={`${styles.shotGrid} ${
+                group === 'Mobile' ? styles.shotGridMobile : ''
+              }`}
+            >
               {[0, 1, 2, 3].map((i) => (
-                <div key={i} className={styles.shotPlaceholder}>
+                <div
+                  key={i}
+                  className={`${styles.shotPlaceholder} ${
+                    group === 'Mobile' ? styles.shotPlaceholderMobile : ''
+                  }`}
+                >
                   <span>Screenshot coming soon</span>
                 </div>
               ))}

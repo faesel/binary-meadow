@@ -176,6 +176,39 @@
   }
 }
 
+/* Mobile (phone) screenshots — portrait form factor */
+.shotGridMobile {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  max-width: 720px;
+}
+
+.shotMobile {
+  border-radius: 20px;
+}
+
+.shotMobile .shotImg {
+  aspect-ratio: 9 / 19.5;
+  object-fit: cover;
+}
+
+.shotPlaceholderMobile {
+  aspect-ratio: 9 / 19.5;
+}
+
+@media (min-width: 560px) {
+  .shotGridMobile {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .shotGridMobile {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: none;
+  }
+}
+
 /* Download CTA */
 .downloadCta {
   background: var(--bg-soft);

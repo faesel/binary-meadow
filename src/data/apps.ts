@@ -32,6 +32,8 @@ export interface AppPrivacy {
   dataHandling: PrivacyDataPoint[];
   /** External services the app may contact, and why. */
   thirdParties: string[];
+  /** App-specific children's privacy statement. */
+  childrenNote: string;
 }
 
 export interface App {
@@ -133,6 +135,8 @@ export const apps: App[] = [
         'Google Play — distributes the app and processes installs under its own privacy policy.',
         'GitHub Releases — hosts the downloadable APK under GitHub’s privacy policy.',
       ],
+      childrenNote:
+        'Jannah Builder is a family-friendly app suitable for all ages. Because it is local-first and collects no personal data, it can be used safely by children as well as adults.',
     },
   },
   {
@@ -210,6 +214,8 @@ export const apps: App[] = [
         'Your self-hosted OPDS servers (e.g. Ubooquity, Komga, Kavita, Calibre-Web) — contacted only with the details you provide, under their own policies.',
         'Google Play — distributes the app and processes installs under its own privacy policy.',
       ],
+      childrenNote:
+        'OPDSy is suitable for all ages and can be used in a family or children’s setting. As it displays only the content on the servers you configure, the person setting up those servers controls what is available — so we recommend that a parent or guardian configures appropriate sources for younger users.',
     },
   },
   {
@@ -293,6 +299,8 @@ export const apps: App[] = [
         'GitHub Releases — distributes the desktop app under GitHub’s privacy policy.',
         'Your chosen AI provider — contacted only when you enable AI Insights, using your own API key and under that provider’s policy.',
       ],
+      childrenNote:
+        'GridWatch is a developer tool intended for adults. It collects no personal data from any user, including children — all session data stays on your own device and is never sent to us.',
     },
   },
 ];
