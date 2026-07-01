@@ -205,3 +205,27 @@
     justify-content: space-between;
   }
 }
+
+/* Privacy */
+.privacy {
+  padding: 0 0 5rem;
+}
+
+.privacyText {
+  margin-top: 1rem;
+  color: var(--body);
+  max-width: 60ch;
+  font-size: 1.02rem;
+}
+
+.privacyLink {
+  display: inline-block;
+  margin-top: 1.25rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--green-700);
+}
+
+.privacyLink:hover {
+  color: var(--green-900);
+}

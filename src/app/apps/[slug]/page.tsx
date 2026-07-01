@@ -181,6 +181,18 @@ export default async function AppPage({
           </div>
         </div>
       </section>
+
+      {/* Privacy */}
+      <section className={styles.privacy}>
+        <div className="container">
+          <span className="eyebrow">Your data</span>
+          <h2 className="section-title">Privacy</h2>
+          <p className={styles.privacyText}>{app.privacy.summary}</p>
+          <Link href={`/apps/${app.slug}/privacy/`} className={styles.privacyLink}>
+            Read the {app.name} privacy policy →
+          </Link>
+        </div>
+      </section>
     </article>
   );
 }

@@ -18,6 +18,22 @@ export interface Screenshot {
   alt: string;
 }
 
+export interface PrivacyDataPoint {
+  title: string;
+  description: string;
+}
+
+export interface AppPrivacy {
+  /** One-line summary of the app's data posture. */
+  summary: string;
+  /** Whether the app collects personal data or analytics off-device. */
+  collectsPersonalData: boolean;
+  /** What data the app handles and where it lives. */
+  dataHandling: PrivacyDataPoint[];
+  /** External services the app may contact, and why. */
+  thirdParties: string[];
+}
+
 export interface App {
   slug: string;
   name: string;
@@ -37,6 +53,8 @@ export interface App {
   screenshots: Screenshot[];
   /** Accent colour pulled from each app's own identity. */
   accent: string;
+  /** App-specific privacy policy, linkable from app stores. */
+  privacy: AppPrivacy;
 }
 
 export const apps: App[] = [
@@ -90,6 +108,32 @@ export const apps: App[] = [
       },
     ],
     screenshots: [],
+    privacy: {
+      summary:
+        'Jannah Builder is local-first. Your prayer logs and progress stay on your device and are never sent to us.',
+      collectsPersonalData: false,
+      dataHandling: [
+        {
+          title: 'Prayer & worship logs',
+          description:
+            'Your daily prayer entries, optional Qur’an and dhikr logs, and the state of your Jannah map are stored locally on your device. They are not transmitted to Binary Meadow or any third party.',
+        },
+        {
+          title: 'No account required',
+          description:
+            'The app works without sign-in. We do not ask for your name, email, phone number, or location, and we do not build a profile of you.',
+        },
+        {
+          title: 'No analytics or tracking',
+          description:
+            'Jannah Builder does not embed advertising SDKs or third-party analytics, and does not track your activity across other apps or websites.',
+        },
+      ],
+      thirdParties: [
+        'Google Play — distributes the app and processes installs under its own privacy policy.',
+        'GitHub Releases — hosts the downloadable APK under GitHub’s privacy policy.',
+      ],
+    },
   },
   {
     slug: 'opdsy',
@@ -136,6 +180,37 @@ export const apps: App[] = [
       },
     ],
     screenshots: [],
+    privacy: {
+      summary:
+        'OPDSy connects only to the self-hosted servers you configure. Your credentials stay in your device keychain and are never sent to us.',
+      collectsPersonalData: false,
+      dataHandling: [
+        {
+          title: 'Server credentials',
+          description:
+            'The addresses, usernames and passwords for your OPDS servers are stored securely in your operating system’s keychain and excluded from persisted app state. They are used only to connect to the servers you choose.',
+        },
+        {
+          title: 'Your library content',
+          description:
+            'Books and comics are streamed directly between your device and your own servers. Binary Meadow has no access to your library, reading activity, or the content you view.',
+        },
+        {
+          title: 'No account or profile',
+          description:
+            'OPDSy requires no Binary Meadow account. We do not collect your name, email, or location, and we build no profile of you.',
+        },
+        {
+          title: 'No analytics or tracking',
+          description:
+            'OPDSy does not embed advertising SDKs or third-party analytics and does not track you across other apps or websites.',
+        },
+      ],
+      thirdParties: [
+        'Your self-hosted OPDS servers (e.g. Ubooquity, Komga, Kavita, Calibre-Web) — contacted only with the details you provide, under their own policies.',
+        'Google Play — distributes the app and processes installs under its own privacy policy.',
+      ],
+    },
   },
   {
     slug: 'gridwatch',
@@ -193,6 +268,32 @@ export const apps: App[] = [
       { src: '/screenshots/gridwatch/mcp.png', alt: 'GridWatch MCP server dashboard' },
       { src: '/screenshots/gridwatch/activity.png', alt: 'GridWatch activity heatmap' },
     ],
+    privacy: {
+      summary:
+        'GridWatch reads your local GitHub Copilot CLI session data on your own machine. Nothing is sent to us; optional AI Insights runs only with a provider you configure.',
+      collectsPersonalData: false,
+      dataHandling: [
+        {
+          title: 'Local session data',
+          description:
+            'GridWatch reads the session files that GitHub Copilot CLI writes on your computer and displays them in the dashboard. This data stays on your machine and is never transmitted to Binary Meadow.',
+        },
+        {
+          title: 'Optional AI Insights',
+          description:
+            'If you enable AI Insights, session content you choose to analyse is sent to the AI provider you configure using your own API key. This happens only on your explicit action; disable the feature and no data leaves your device.',
+        },
+        {
+          title: 'No account or telemetry',
+          description:
+            'GridWatch needs no Binary Meadow account and includes no advertising SDKs or third-party usage analytics. We do not collect your name, email, or a profile of your activity.',
+        },
+      ],
+      thirdParties: [
+        'GitHub Releases — distributes the desktop app under GitHub’s privacy policy.',
+        'Your chosen AI provider — contacted only when you enable AI Insights, using your own API key and under that provider’s policy.',
+      ],
+    },
   },
 ];
 
