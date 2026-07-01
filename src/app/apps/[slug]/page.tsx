@@ -78,6 +78,16 @@ export default async function AppPage({
           <Link href="/#apps" className={styles.back}>
             ← All apps
           </Link>
+          {app.featureGraphic && (
+            <Image
+              src={app.featureGraphic}
+              alt={`${app.name} feature graphic`}
+              width={1024}
+              height={500}
+              className={styles.featureGraphic}
+              priority
+            />
+          )}
           <div className={styles.heroGrid}>
             <Image
               src={app.icon}

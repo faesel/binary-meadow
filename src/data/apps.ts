@@ -46,6 +46,8 @@ export interface App {
   description: string;
   category: string;
   icon: string;
+  /** Wide promotional banner (e.g. 1024×500). Optional — desktop apps may not have one. */
+  featureGraphic?: string;
   platforms: Platform[];
   /** Primary call-to-action grouping shown on cards and detail pages. */
   downloads: DownloadLink[];
@@ -70,6 +72,7 @@ export const apps: App[] = [
       'Jannah Builder lets you log your five daily prayers and watch your progress manifest as a beautiful, growing world inspired by Jannah (Paradise). It favours calm reflection over gamification, gentle encouragement over guilt, and gradual growth earned through consistent practice. Trees, flowers, animals and rivers appear as you stay consistent — and fade gently, never harshly, when days are missed.',
     category: 'Lifestyle / Wellbeing',
     icon: '/apps/jannah-builder.png',
+    featureGraphic: '/apps/jannah-builder-feature.png',
     platforms: ['android'],
     accent: '#2d7a5f',
     repository: 'https://github.com/faesel/jannah-builder',
@@ -109,7 +112,13 @@ export const apps: App[] = [
           'Optional Qur’an and dhikr logging enrich the ambience and occasionally grow lasting barakah flowers.',
       },
     ],
-    screenshots: [],
+    screenshots: [
+      { src: '/screenshots/jannah-builder/1-prayer-screenhot.jpg', alt: 'Jannah Builder prayer logging screen' },
+      { src: '/screenshots/jannah-builder/2-jannah-map.jpg', alt: 'Jannah Builder living Jannah map' },
+      { src: '/screenshots/jannah-builder/3-stats-screen.jpg', alt: 'Jannah Builder statistics screen' },
+      { src: '/screenshots/jannah-builder/4all-time-stats-scren.jpg', alt: 'Jannah Builder all-time statistics screen' },
+      { src: '/screenshots/jannah-builder/5-settings.jpg', alt: 'Jannah Builder settings screen' },
+    ],
     privacy: {
       summary:
         'Jannah Builder is local-first. Your prayer logs and progress stay on your device and are never sent to us.',
