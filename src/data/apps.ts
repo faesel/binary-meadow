@@ -158,6 +158,7 @@ export const apps: App[] = [
       'OPDSy browses and streams comics and books from many OPDS servers at once — Ubooquity, Komga, Kavita and Calibre-Web — merged into a single home with per-source colour badges. Comics stream page-by-page over OPDS-PSE with smart prefetch, each source loads independently so one broken server never takes down your library, and credentials are stored securely in the device keychain. It is the resilient, multi-source spiritual successor to the discontinued Kuboo.',
     category: 'Books & Reference',
     icon: '/apps/opdsy.png',
+    featureGraphic: '/apps/opdsy-feature.png',
     platforms: ['android'],
     accent: '#1f6f8b',
     repository: 'https://github.com/faesel/opdsy',
