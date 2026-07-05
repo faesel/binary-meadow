@@ -170,6 +170,20 @@ export const apps: App[] = [
       },
     ],
     techStack: ['Expo SDK 56', 'React Native', 'TypeScript', 'TanStack Query'],
+    screenshots: [
+      { src: '/screenshots/opdsy/home.jpg', alt: 'OPDSy home screen with continue reading and favourites' },
+      { src: '/screenshots/opdsy/library.jpg', alt: 'OPDSy unified library browsing view' },
+      { src: '/screenshots/opdsy/comic-list.jpg', alt: 'OPDSy comic series list with cover art' },
+      { src: '/screenshots/opdsy/book-list.jpg', alt: 'OPDSy book list with cover art' },
+      { src: '/screenshots/opdsy/comic-reading.jpg', alt: 'OPDSy comic page reader' },
+      { src: '/screenshots/opdsy/book-reading.jpg', alt: 'OPDSy book reader view' },
+      { src: '/screenshots/opdsy/downloads.jpg', alt: 'OPDSy offline downloads screen' },
+      { src: '/screenshots/opdsy/libraries.jpg', alt: 'OPDSy connected OPDS servers list' },
+      { src: '/screenshots/opdsy/edit-libraries.jpg', alt: 'OPDSy editing an OPDS server connection' },
+      { src: '/screenshots/opdsy/sync-on.jpg', alt: 'OPDSy cross-device sync enabled' },
+      { src: '/screenshots/opdsy/sync-off.jpg', alt: 'OPDSy sync settings overview' },
+      { src: '/screenshots/opdsy/settings.jpg', alt: 'OPDSy settings screen' },
+    ],
     features: [
       {
         title: 'Unified library',
@@ -192,7 +206,6 @@ export const apps: App[] = [
           'Passwords live in the OS keychain via secure storage and are excluded from persisted app state.',
       },
     ],
-    screenshots: [],
     privacy: {
       summary:
         'OPDSy connects only to the self-hosted servers you configure. Your credentials stay in your device keychain and are never sent to us.',
