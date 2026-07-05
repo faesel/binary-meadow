@@ -174,7 +174,7 @@ export const apps: App[] = [
     screenshots: [
       { src: '/screenshots/opdsy/home.jpg', alt: 'OPDSy home screen with continue reading and favourites' },
       { src: '/screenshots/opdsy/library.jpg', alt: 'OPDSy unified library browsing view' },
-      { src: '/screenshots/opdsy/comic-list.jpg', alt: 'OPDSy comic series list with cover art' },
+      { src: '/screenshots/opdsy/comic-list.jpg?v=2', alt: 'OPDSy comic series list with cover art' },
       { src: '/screenshots/opdsy/book-list.jpg', alt: 'OPDSy book list with cover art' },
       { src: '/screenshots/opdsy/comic-reading.jpg', alt: 'OPDSy comic page reader' },
       { src: '/screenshots/opdsy/book-reading.jpg', alt: 'OPDSy book reader view' },
