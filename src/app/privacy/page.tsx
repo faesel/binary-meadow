@@ -42,8 +42,8 @@ export default function PrivacyPage() {
           <ul>
             <li>
               <strong>App data</strong> is stored locally on your device.
-              Sensitive credentials are kept in your operating system’s secure
-              keychain.
+              Sensitive credentials are kept in your device’s secure storage
+              (such as the Android Keystore).
             </li>
             <li>
               <strong>This website</strong> is a static site and does not set

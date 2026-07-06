@@ -155,7 +155,7 @@ export const apps: App[] = [
     summary:
       'A modern, cross-platform reader that streams comics and books from multiple self-hosted OPDS servers in one unified library.',
     description:
-      'OPDSy browses and streams comics and books from many OPDS servers at once — Ubooquity, Komga, Kavita and Calibre-Web — merged into a single home with per-source colour badges. Comics stream page-by-page over OPDS-PSE with smart prefetch, each source loads independently so one broken server never takes down your library, and credentials are stored securely in the device keychain. It is the resilient, multi-source spiritual successor to the discontinued Kuboo.',
+      'OPDSy browses and streams comics and books from many OPDS servers at once — Ubooquity, Komga, Kavita and Calibre-Web — merged into a single home with per-source colour badges. Comics stream page-by-page over OPDS-PSE with smart prefetch, and each source loads independently so one broken server never takes down your library. Server passwords are kept in your device’s secure storage, and optional cross-device sync saves your library, favourites and reading progress to your own Google Drive — end-to-end encrypted so only your devices can read it. It is the resilient, multi-source spiritual successor to the discontinued Kuboo.',
     category: 'Books & Reference',
     icon: '/apps/opdsy.png',
     featureGraphic: '/apps/opdsy-feature.png',
@@ -182,7 +182,7 @@ export const apps: App[] = [
       { src: '/screenshots/opdsy/downloads.jpg', alt: 'OPDSy offline downloads screen' },
       { src: '/screenshots/opdsy/libraries.jpg', alt: 'OPDSy connected OPDS servers list' },
       { src: '/screenshots/opdsy/edit-libraries.jpg', alt: 'OPDSy editing an OPDS server connection' },
-      { src: '/screenshots/opdsy/sync-on.jpg', alt: 'OPDSy cross-device sync enabled' },
+      { src: '/screenshots/opdsy/sync-on.jpg?v=2', alt: 'OPDSy cross-device sync enabled' },
       { src: '/screenshots/opdsy/sync-off.jpg', alt: 'OPDSy sync settings overview' },
       { src: '/screenshots/opdsy/settings.jpg', alt: 'OPDSy settings screen' },
     ],
@@ -205,18 +205,23 @@ export const apps: App[] = [
       {
         title: 'Secure credentials',
         description:
-          'Passwords live in the OS keychain via secure storage and are excluded from persisted app state.',
+          'Server passwords are kept in your device’s secure storage (the Android Keystore) and excluded from persisted app state.',
+      },
+      {
+        title: 'Private cross-device sync',
+        description:
+          'Optionally sync your library, favourites and reading progress through your own Google Drive — end-to-end encrypted, readable only on your devices.',
       },
     ],
     privacy: {
       summary:
-        'OPDSy connects only to the self-hosted servers you configure. Your credentials stay in your device keychain and are never sent to us.',
+        'OPDSy connects only to the self-hosted servers you configure. It has no Binary Meadow account and no analytics, and optional cross-device sync is end-to-end encrypted inside your own Google Drive — so we never see your library, reading activity or credentials.',
       collectsPersonalData: false,
       dataHandling: [
         {
           title: 'Server credentials',
           description:
-            'The addresses, usernames and passwords for your OPDS servers are stored securely in your operating system’s keychain and excluded from persisted app state. They are used only to connect to the servers you choose.',
+            'The addresses, usernames and passwords for your OPDS servers are kept in your device’s secure storage (the Android Keystore) and excluded from persisted app state. They are used only to connect to the servers you choose and are never sent to Binary Meadow.',
         },
         {
           title: 'Your library content',
@@ -224,9 +229,14 @@ export const apps: App[] = [
             'Books and comics are streamed directly between your device and your own servers. Binary Meadow has no access to your library, reading activity, or the content you view.',
         },
         {
+          title: 'Cross-device sync (optional)',
+          description:
+            'If you turn on sync, your library, favourites and reading progress — and, only if you opt in, your server credentials — are packaged into a single file, end-to-end encrypted on your device with a passphrase-derived key (AES-256-GCM), and stored in a hidden, app-private folder of your own Google Drive. Neither Binary Meadow nor Google can read its contents; only a device holding your passphrase can decrypt it. You can turn sync off and remove the file at any time.',
+        },
+        {
           title: 'No account or profile',
           description:
-            'OPDSy requires no Binary Meadow account. We do not collect your name, email, or location, and we build no profile of you.',
+            'OPDSy requires no Binary Meadow account. If you use sync you sign in with your own Google account solely to access your Drive’s app folder. We do not collect your name, email, or location, and we build no profile of you.',
         },
         {
           title: 'No analytics or tracking',
@@ -236,6 +246,7 @@ export const apps: App[] = [
       ],
       thirdParties: [
         'Your self-hosted OPDS servers (e.g. Ubooquity, Komga, Kavita, Calibre-Web) — contacted only with the details you provide, under their own policies.',
+        'Google Drive — used only if you enable cross-device sync, to store an end-to-end-encrypted copy of your data in a hidden, app-private folder of your own Google account. OPDSy requests only the app-data scope (drive.appdata) and cannot see any of your other Drive files.',
         'Google Play — distributes the app and processes installs under its own privacy policy.',
       ],
       childrenNote:
