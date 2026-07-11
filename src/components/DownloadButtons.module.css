@@ -24,3 +24,29 @@
   border-radius: 999px;
   margin-left: 0.15rem;
 }
+
+.playBadgeLink {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 8px;
+  transition: opacity 0.15s ease;
+}
+
+.playBadgeLink:hover {
+  opacity: 0.85;
+}
+
+.playBadgeLink:focus-visible {
+  outline: 2px solid var(--green-700);
+  outline-offset: 3px;
+}
+
+.playBadge {
+  display: block;
+  height: 52px;
+  width: auto;
+}
+
+.sm .playBadge {
+  height: 44px;
+}
