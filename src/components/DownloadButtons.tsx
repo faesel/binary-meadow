@@ -20,7 +20,7 @@ export default function DownloadButtons({
   downloads: DownloadLink[];
   size?: 'sm' | 'md';
 }) {
-  const badgeHeight = size === 'sm' ? 44 : 52;
+  const badgeHeight = size === 'sm' ? 50 : 60;
   const badgeWidth = Math.round(badgeHeight * PLAY_BADGE_RATIO);
 
   return (
