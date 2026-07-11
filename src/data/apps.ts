@@ -165,9 +165,8 @@ export const apps: App[] = [
     downloads: [
       {
         label: 'Google Play',
-        href: '#',
+        href: 'https://play.google.com/store/apps/details?id=com.opdsy',
         platform: 'android',
-        comingSoon: true,
       },
     ],
     techStack: ['Expo SDK 56', 'React Native', 'TypeScript', 'TanStack Query'],
