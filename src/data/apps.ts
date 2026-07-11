@@ -51,7 +51,8 @@ export interface App {
   platforms: Platform[];
   /** Primary call-to-action grouping shown on cards and detail pages. */
   downloads: DownloadLink[];
-  repository: string;
+  /** Public source repository. Omit for closed-source apps. */
+  repository?: string;
   features: AppFeature[];
   techStack: string[];
   screenshots: Screenshot[];
@@ -161,7 +162,6 @@ export const apps: App[] = [
     featureGraphic: '/apps/opdsy-feature.png',
     platforms: ['android'],
     accent: '#1f6f8b',
-    repository: 'https://github.com/faesel/opdsy',
     downloads: [
       {
         label: 'Google Play',

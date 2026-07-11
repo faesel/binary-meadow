@@ -112,14 +112,16 @@ export default async function AppPage({
               <p className={styles.tagline}>{app.tagline}</p>
               <p className={styles.summary}>{app.description}</p>
               <DownloadButtons downloads={app.downloads} />
-              <a
-                href={app.repository}
-                className={styles.repo}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View source on GitHub ↗
-              </a>
+              {app.repository && (
+                <a
+                  href={app.repository}
+                  className={styles.repo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View source on GitHub ↗
+                </a>
+              )}
             </div>
           </div>
         </div>
