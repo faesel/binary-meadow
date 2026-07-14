@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Generate Open Graph images (1200x630) for the site and each app."""
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 W, H = 1200, 630
 BOLD = "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
@@ -78,6 +78,17 @@ def rounded(img, radius):
     out = img.convert("RGBA")
     out.putalpha(mask)
     return out
+
+
+def cover_resize(img, size):
+    """Scale to fill the target box, then centre-crop."""
+    tw, th = size
+    sw, sh = img.size
+    scale = max(tw / sw, th / sh)
+    img = img.resize((round(sw * scale), round(sh * scale)), Image.LANCZOS)
+    x = (img.size[0] - tw) // 2
+    y = (img.size[1] - th) // 2
+    return img.crop((x, y, x + tw, y + th))
 
 
 def make_home():
@@ -174,10 +185,54 @@ def make_app_dark(slug, name, tagline, icon_path, meta_label):
     print(f"{slug} OG (dark)")
 
 
+def make_app_scene(slug, name, tagline, feature_path, icon_path):
+    """OG built from the app's feature scene with a translucent banner."""
+    img = cover_resize(Image.open(feature_path).convert("RGB"), (W, H))
+    # Blur so the feature graphic's baked-in text becomes a soft garden backdrop
+    img = img.filter(ImageFilter.GaussianBlur(9)).convert("RGBA")
+
+    # Soften the scene so the wordmark stays legible
+    shade = Image.new("RGBA", (W, H), (18, 40, 30, 92))
+    img = Image.alpha_composite(img, shade)
+    d = ImageDraw.Draw(img)
+
+    # Centre banner behind the wordmark (mirrors the feature graphic)
+    band = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    bd = ImageDraw.Draw(band)
+    by0, by1 = 232, 402
+    bd.rounded_rectangle([150, by0, W - 150, by1], radius=28, fill=(20, 46, 36, 214))
+    img = Image.alpha_composite(img, band)
+    d = ImageDraw.Draw(img)
+
+    name_font = font(BOLD, 92)
+    nw = d.textlength(name, font=name_font)
+    d.text(((W - nw) / 2, by0 + 24), name, font=name_font, fill=CREAM)
+    tag_font = font(REG, 38)
+    tw = d.textlength(tagline, font=tag_font)
+    d.text(((W - tw) / 2, by0 + 128), tagline, font=tag_font, fill=(226, 238, 226))
+
+    # App icon, top-left
+    icon = Image.open(icon_path).convert("RGBA")
+    icon.thumbnail((104, 104))
+    icon = rounded(icon, 26)
+    img.paste(icon, (72, 64), icon)
+
+    # Binary Meadow mark, bottom-right
+    mark = Image.open("public/apps/binary-meadow-mark-light.png").convert("RGBA")
+    mark.thumbnail((60, 60))
+    img.alpha_composite(mark, (W - 202, H - 88))
+    d.text((W - 130, H - 82), "Binary", font=font(BOLD, 22), fill=CREAM)
+    d.text((W - 130, H - 56), "Meadow", font=font(BOLD, 22), fill=CREAM)
+
+    img.convert("RGB").save(f"public/og/{slug}.png", quality=92)
+    print(f"{slug} OG (scene)")
+
+
 make_home()
-make_app("jannah-builder", "Jannah Builder",
-         "Watch your spiritual journey grow.",
-         "public/apps/jannah-builder.png", "Android")
+make_app_scene("jannah-builder", "Jannah Builder",
+               "Grow a garden through prayer.",
+               "public/apps/jannah-builder-feature.png",
+               "public/apps/jannah-builder.png")
 make_app_dark("opdsy", "OPDSy", "Your self-hosted library, unified.",
               "public/apps/opdsy.png",
               "OPDS reader  \u00b7  Self-hosted  \u00b7  Private sync")
