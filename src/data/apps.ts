@@ -109,11 +109,6 @@ export const apps: App[] = [
         description:
           'No account, no analytics and no tracking of any kind. Every prayer log stays on your device.',
       },
-      {
-        title: 'More than prayers',
-        description:
-          'Log Qur’an reading and dhikr for gentle visual enhancements — golden light and floating particles.',
-      },
     ],
     features: [
       {
