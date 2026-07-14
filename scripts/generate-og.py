@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Generate Open Graph images (1200x630) for the site and each app."""
-from PIL import Image, ImageDraw, ImageFont, ImageFilter
+from PIL import Image, ImageDraw, ImageFont
 
 W, H = 1200, 630
 BOLD = "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
@@ -10,17 +10,6 @@ GREEN_950 = (12, 36, 28)
 GREEN_800 = (22, 67, 47)
 GREEN_300 = (127, 184, 159)
 CREAM = (241, 248, 244)
-
-# Dark theme (matches app feature graphics)
-INK_DARK = (8, 10, 14)
-INK_NAVY = (21, 26, 36)
-INK_MUTED = (150, 162, 178)
-ACCENT_PILLS = [
-    (245, 183, 46),   # amber
-    (53, 192, 232),   # cyan
-    (232, 72, 60),    # red
-    (124, 77, 232),   # purple
-]
 
 
 def vgradient(size, top, bottom):
@@ -35,20 +24,6 @@ def vgradient(size, top, bottom):
             md[x, y] = v
     base.paste(top_img, (0, 0), mask)
     return base
-
-
-def diagonal_gradient(size, dark, light):
-    """Near-black to navy toward the top-right corner (matches feature graphic)."""
-    w, h = size
-    img = Image.new("RGB", size)
-    px = img.load()
-    for y in range(h):
-        for x in range(w):
-            t = ((x / w) + ((h - y) / h)) / 2
-            px[x, y] = tuple(
-                int(dark[i] + (light[i] - dark[i]) * t) for i in range(3)
-            )
-    return img
 
 
 def font(path, sz):
@@ -78,17 +53,6 @@ def rounded(img, radius):
     out = img.convert("RGBA")
     out.putalpha(mask)
     return out
-
-
-def cover_resize(img, size):
-    """Scale to fill the target box, then centre-crop."""
-    tw, th = size
-    sw, sh = img.size
-    scale = max(tw / sw, th / sh)
-    img = img.resize((round(sw * scale), round(sh * scale)), Image.LANCZOS)
-    x = (img.size[0] - tw) // 2
-    y = (img.size[1] - th) // 2
-    return img.crop((x, y, x + tw, y + th))
 
 
 def make_home():
@@ -137,104 +101,21 @@ def make_app(slug, name, tagline, icon_path, platform_label):
     print(f"{slug} OG")
 
 
-def make_app_dark(slug, name, tagline, icon_path, meta_label):
-    """Dark-themed OG aligned with the app's black feature graphic."""
-    img = diagonal_gradient((W, H), INK_DARK, INK_NAVY).convert("RGBA")
-    d = ImageDraw.Draw(img)
-
-    # Icon, right side, softly framed
-    icon = Image.open(icon_path).convert("RGBA")
-    icon.thumbnail((320, 320))
-    icon = rounded(icon, 64)
-    ix = W - icon.size[0] - 110
-    iy = (H - icon.size[1]) // 2
-    glow = Image.new("RGBA", (icon.size[0] + 48, icon.size[1] + 48), (0, 0, 0, 0))
-    gd = ImageDraw.Draw(glow)
-    gd.rounded_rectangle([0, 0, glow.size[0], glow.size[1]], radius=88,
-                         fill=(255, 255, 255, 16))
-    img.alpha_composite(glow, (ix - 24, iy - 24))
-    img.paste(icon, (ix, iy), icon)
-
-    # Wordmark + tagline, left
-    tx = 96
-    d.text((tx, 150), name, font=font(BOLD, 110), fill=CREAM)
-    lines = wrap(d, tagline, font(REG, 40), ix - tx - 60)
-    y = 300
-    for ln in lines:
-        d.text((tx, y), ln, font=font(REG, 40), fill=INK_MUTED)
-        y += 56
-
-    # Accent pills row (mirrors the feature graphic)
-    pill_y = y + 34
-    px = tx
-    for colour in ACCENT_PILLS:
-        d.rounded_rectangle([px, pill_y, px + 66, pill_y + 16], radius=8, fill=colour)
-        px += 82
-
-    # Meta line
-    d.text((tx, pill_y + 52), meta_label, font=font(BOLD, 26), fill=INK_MUTED)
-
-    # Binary Meadow mark, bottom-right
-    mark = Image.open("public/apps/binary-meadow-mark-light.png").convert("RGBA")
-    mark.thumbnail((64, 64))
-    img.alpha_composite(mark, (W - 210, H - 92))
-    d.text((W - 132, H - 84), "Binary", font=font(BOLD, 22), fill=CREAM)
-    d.text((W - 132, H - 58), "Meadow", font=font(BOLD, 22), fill=CREAM)
-
-    img.convert("RGB").save(f"public/og/{slug}.png", quality=92)
-    print(f"{slug} OG (dark)")
-
-
-def make_app_scene(slug, name, tagline, feature_path, icon_path):
-    """OG built from the app's feature scene with a translucent banner."""
-    img = cover_resize(Image.open(feature_path).convert("RGB"), (W, H))
-    # Blur so the feature graphic's baked-in text becomes a soft garden backdrop
-    img = img.filter(ImageFilter.GaussianBlur(9)).convert("RGBA")
-
-    # Soften the scene so the wordmark stays legible
-    shade = Image.new("RGBA", (W, H), (18, 40, 30, 92))
-    img = Image.alpha_composite(img, shade)
-    d = ImageDraw.Draw(img)
-
-    # Centre banner behind the wordmark (mirrors the feature graphic)
-    band = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    bd = ImageDraw.Draw(band)
-    by0, by1 = 232, 402
-    bd.rounded_rectangle([150, by0, W - 150, by1], radius=28, fill=(20, 46, 36, 214))
-    img = Image.alpha_composite(img, band)
-    d = ImageDraw.Draw(img)
-
-    name_font = font(BOLD, 92)
-    nw = d.textlength(name, font=name_font)
-    d.text(((W - nw) / 2, by0 + 24), name, font=name_font, fill=CREAM)
-    tag_font = font(REG, 38)
-    tw = d.textlength(tagline, font=tag_font)
-    d.text(((W - tw) / 2, by0 + 128), tagline, font=tag_font, fill=(226, 238, 226))
-
-    # App icon, top-left
-    icon = Image.open(icon_path).convert("RGBA")
-    icon.thumbnail((104, 104))
-    icon = rounded(icon, 26)
-    img.paste(icon, (72, 64), icon)
-
-    # Binary Meadow mark, bottom-right
-    mark = Image.open("public/apps/binary-meadow-mark-light.png").convert("RGBA")
-    mark.thumbnail((60, 60))
-    img.alpha_composite(mark, (W - 202, H - 88))
-    d.text((W - 130, H - 82), "Binary", font=font(BOLD, 22), fill=CREAM)
-    d.text((W - 130, H - 56), "Meadow", font=font(BOLD, 22), fill=CREAM)
-
-    img.convert("RGB").save(f"public/og/{slug}.png", quality=92)
-    print(f"{slug} OG (scene)")
+def make_app_feature(slug, feature_path):
+    """Use the app's feature graphic directly as the OG image (fitted to 1200x630)."""
+    src = Image.open(feature_path).convert("RGB")
+    bg = src.getpixel((0, 0))
+    canvas = Image.new("RGB", (W, H), bg)
+    sw, sh = src.size
+    scale = min(W / sw, H / sh)
+    fitted = src.resize((round(sw * scale), round(sh * scale)), Image.LANCZOS)
+    canvas.paste(fitted, ((W - fitted.size[0]) // 2, (H - fitted.size[1]) // 2))
+    canvas.save(f"public/og/{slug}.png", quality=92)
+    print(f"{slug} OG (feature)")
 
 
 make_home()
-make_app_scene("jannah-builder", "Jannah Builder",
-               "Grow a garden through prayer.",
-               "public/apps/jannah-builder-feature.png",
-               "public/apps/jannah-builder.png")
-make_app_dark("opdsy", "OPDSy", "Your self-hosted library, unified.",
-              "public/apps/opdsy.png",
-              "OPDS reader  \u00b7  Self-hosted  \u00b7  Private sync")
+make_app_feature("jannah-builder", "public/apps/jannah-builder-feature.png")
+make_app_feature("opdsy", "public/apps/opdsy-feature.png")
 make_app("gridwatch", "GridWatch", "See every AI-assisted session.",
          "public/apps/gridwatch.png", "macOS & Windows")
