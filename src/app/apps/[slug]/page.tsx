@@ -110,7 +110,11 @@ export default async function AppPage({
               </div>
               <h1 className={styles.title}>{app.name}</h1>
               <p className={styles.tagline}>{app.tagline}</p>
-              <p className={styles.summary}>{app.description}</p>
+              <div className={styles.summary}>
+                {app.description.split('\n\n').map((para) => (
+                  <p key={para}>{para}</p>
+                ))}
+              </div>
               <DownloadButtons downloads={app.downloads} />
               {app.repository && (
                 <a
@@ -127,17 +131,17 @@ export default async function AppPage({
         </div>
       </section>
 
-      {/* Features */}
+      {/* Highlights */}
       <section id="highlights" className={`${styles.highlights} ${styles.anchorSection}`}>
         <div className="container">
-          <span className="eyebrow">What it does</span>
+          <span className="eyebrow">Why {app.name}</span>
           <h2 className="section-title">
             <a href="#highlights" className={styles.anchorLink}>
               Highlights
             </a>
           </h2>
           <div className={styles.features}>
-            {app.features.map((f) => (
+            {(app.highlights ?? app.features).map((f) => (
               <div key={f.title} className={styles.feature}>
                 <h3 className={styles.featureTitle}>{f.title}</h3>
                 <p className={styles.featureText}>{f.description}</p>
@@ -146,6 +150,32 @@ export default async function AppPage({
           </div>
         </div>
       </section>
+
+      {/* Features */}
+      {app.highlights && (
+        <section
+          id="features"
+          className={`section ${styles.anchorSection}`}
+          style={{ ['--app-accent' as string]: app.accent }}
+        >
+          <div className="container">
+            <span className="eyebrow">What it does</span>
+            <h2 className="section-title">
+              <a href="#features" className={styles.anchorLink}>
+                Features
+              </a>
+            </h2>
+            <div className={styles.capabilities}>
+              {app.features.map((f) => (
+                <div key={f.title} className={styles.capability}>
+                  <h3 className={styles.capabilityTitle}>{f.title}</h3>
+                  <p className={styles.capabilityText}>{f.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Screenshots */}
       <section id="screenshots" className={`section ${styles.anchorSection}`}>

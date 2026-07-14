@@ -98,6 +98,14 @@
   max-width: 60ch;
 }
 
+.summary p {
+  line-height: 1.6;
+}
+
+.summary p:not(:last-child) {
+  margin-bottom: 0.85rem;
+}
+
 .repo {
   display: inline-block;
   margin-top: 1.1rem;
@@ -158,6 +166,37 @@
 
 @media (min-width: 720px) {
   .features {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Full feature list (compact) */
+.capabilities {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem 2.5rem;
+}
+
+.capability {
+  border-left: 3px solid var(--app-accent, var(--green-500));
+  padding-left: 1rem;
+}
+
+.capabilityTitle {
+  font-size: 1.05rem;
+  margin-bottom: 0.35rem;
+  color: var(--ink);
+}
+
+.capabilityText {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+@media (min-width: 720px) {
+  .capabilities {
     grid-template-columns: 1fr 1fr;
   }
 }

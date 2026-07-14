@@ -53,6 +53,8 @@ export interface App {
   downloads: DownloadLink[];
   /** Public source repository. Omit for closed-source apps. */
   repository?: string;
+  /** A few emphasised selling points, shown prominently above the full feature list. */
+  highlights?: AppFeature[];
   features: AppFeature[];
   techStack: string[];
   screenshots: Screenshot[];
@@ -156,7 +158,7 @@ export const apps: App[] = [
     summary:
       'A modern, cross-platform reader that streams comics and books from multiple self-hosted OPDS servers in one unified library.',
     description:
-      'OPDSy is a fast, private comic and ebook reader for the books, comics and manga you already host yourself. Connect it to your OPDS servers — Komga, Kavita, Ubooquity, Calibre-Web and any OPDS 1.2 or 2.0 source — and it merges them into a single, unified library with per-source colour badges. Comics stream page-by-page over OPDS-PSE with smart prefetch, and each source loads independently so one offline or broken server never takes down the rest of your library. Read EPUB, MOBI, AZW3 and FB2 books or CBZ/CBR comics, listen to any book with built-in text-to-speech, and download titles for fully offline reading. Server passwords stay in your device’s secure keychain, and optional cross-device sync saves your library, favourites and reading progress to your own Google Drive — end-to-end encrypted so only your devices can read it. No account, no ads and no tracking of any kind. OPDSy is the resilient, multi-source spiritual successor to the discontinued Kuboo.',
+      'OPDSy is a fast, private comic and ebook reader for the books, comics and manga you already host yourself.\n\nConnect it to your OPDS servers — Komga, Kavita, Ubooquity, Calibre-Web and any OPDS 1.2 or 2.0 source — and browse them all together in one unified library.\n\nRead EPUB, MOBI, AZW3 and FB2 books or CBZ/CBR comics, listen to any book with built-in text-to-speech, and download titles for fully offline reading — with no account, no ads and no tracking of any kind.',
     category: 'Books & Reference',
     icon: '/apps/opdsy.png',
     featureGraphic: '/apps/opdsy-feature.png',
@@ -184,6 +186,28 @@ export const apps: App[] = [
       { src: '/screenshots/opdsy/sync-on.jpg?v=2', alt: 'OPDSy cross-device sync enabled' },
       { src: '/screenshots/opdsy/sync-off.jpg', alt: 'OPDSy sync settings overview' },
       { src: '/screenshots/opdsy/settings.jpg', alt: 'OPDSy settings screen' },
+    ],
+    highlights: [
+      {
+        title: 'Private by design, zero tracking',
+        description:
+          'No account, no ads, no analytics and no tracking of any kind. Your reading is nobody’s business but yours.',
+      },
+      {
+        title: 'One library, many servers',
+        description:
+          'Komga, Kavita, Ubooquity, Calibre-Web and any OPDS 1.2 / 2.0 source, merged into a single unified home.',
+      },
+      {
+        title: 'Comics, books and audio',
+        description:
+          'Stream comics and manga, read ebooks in multiple formats, or have any book read aloud with text-to-speech.',
+      },
+      {
+        title: 'The successor to Kuboo',
+        description:
+          'A resilient, multi-source reader rebuilt from the ground up for speed, reliability and privacy — and actively maintained.',
+      },
     ],
     features: [
       {
@@ -235,11 +259,6 @@ export const apps: App[] = [
         title: 'Private cross-device sync',
         description:
           'Optionally sync your library, favourites and reading progress through your own Google Drive — end-to-end encrypted with a passphrase-derived key, readable only on your devices.',
-      },
-      {
-        title: 'Private by design, zero tracking',
-        description:
-          'No account, no ads, no third-party analytics and no tracking of any kind. OPDSy connects only to the self-hosted servers you choose.',
       },
     ],
     privacy: {
