@@ -61,6 +61,15 @@ export default function Footer() {
             <h3 className={styles.colTitle}>More</h3>
             <ul>
               <li>
+                <a
+                  href={company.twitterUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Twitter / X ↗
+                </a>
+              </li>
+              <li>
                 <a href={company.founderUrl} target="_blank" rel="noopener noreferrer">
                   faesel.com ↗
                 </a>

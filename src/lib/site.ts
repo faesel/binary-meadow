@@ -6,6 +6,8 @@ export const company = {
     'Binary Meadow is an independent software studio building calm, well-crafted apps for everyday life and the people who make software.',
   url: 'https://www.binarymeadow.com',
   email: 'hello@binarymeadow.com',
+  twitter: '@binarymeadow',
+  twitterUrl: 'https://twitter.com/binarymeadow',
   // UK company registration details — replace placeholders with the official record.
   companyNumber: '17302587',
   registeredOffice: 'London, United Kingdom',

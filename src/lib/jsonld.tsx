@@ -25,6 +25,7 @@ export function organizationSchema() {
     logo: `${company.url}/apps/binary-meadow-mark.png`,
     email: company.email,
     description: company.description,
+    sameAs: [company.twitterUrl],
     foundingLocation: company.registeredOffice,
     founder: {
       '@type': 'Person',

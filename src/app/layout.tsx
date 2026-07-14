@@ -51,6 +51,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
+    site: company.twitter,
+    creator: company.twitter,
     title: `${company.name} — ${company.tagline}`,
     description: company.description,
     images: ['/og/binary-meadow.png'],
