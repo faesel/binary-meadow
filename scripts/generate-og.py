@@ -11,6 +11,17 @@ GREEN_800 = (22, 67, 47)
 GREEN_300 = (127, 184, 159)
 CREAM = (241, 248, 244)
 
+# Dark theme (matches app feature graphics)
+INK_DARK = (8, 10, 14)
+INK_NAVY = (21, 26, 36)
+INK_MUTED = (150, 162, 178)
+ACCENT_PILLS = [
+    (245, 183, 46),   # amber
+    (53, 192, 232),   # cyan
+    (232, 72, 60),    # red
+    (124, 77, 232),   # purple
+]
+
 
 def vgradient(size, top, bottom):
     w, h = size
@@ -24,6 +35,20 @@ def vgradient(size, top, bottom):
             md[x, y] = v
     base.paste(top_img, (0, 0), mask)
     return base
+
+
+def diagonal_gradient(size, dark, light):
+    """Near-black to navy toward the top-right corner (matches feature graphic)."""
+    w, h = size
+    img = Image.new("RGB", size)
+    px = img.load()
+    for y in range(h):
+        for x in range(w):
+            t = ((x / w) + ((h - y) / h)) / 2
+            px[x, y] = tuple(
+                int(dark[i] + (light[i] - dark[i]) * t) for i in range(3)
+            )
+    return img
 
 
 def font(path, sz):
@@ -101,11 +126,60 @@ def make_app(slug, name, tagline, icon_path, platform_label):
     print(f"{slug} OG")
 
 
+def make_app_dark(slug, name, tagline, icon_path, meta_label):
+    """Dark-themed OG aligned with the app's black feature graphic."""
+    img = diagonal_gradient((W, H), INK_DARK, INK_NAVY).convert("RGBA")
+    d = ImageDraw.Draw(img)
+
+    # Icon, right side, softly framed
+    icon = Image.open(icon_path).convert("RGBA")
+    icon.thumbnail((320, 320))
+    icon = rounded(icon, 64)
+    ix = W - icon.size[0] - 110
+    iy = (H - icon.size[1]) // 2
+    glow = Image.new("RGBA", (icon.size[0] + 48, icon.size[1] + 48), (0, 0, 0, 0))
+    gd = ImageDraw.Draw(glow)
+    gd.rounded_rectangle([0, 0, glow.size[0], glow.size[1]], radius=88,
+                         fill=(255, 255, 255, 16))
+    img.alpha_composite(glow, (ix - 24, iy - 24))
+    img.paste(icon, (ix, iy), icon)
+
+    # Wordmark + tagline, left
+    tx = 96
+    d.text((tx, 150), name, font=font(BOLD, 110), fill=CREAM)
+    lines = wrap(d, tagline, font(REG, 40), ix - tx - 60)
+    y = 300
+    for ln in lines:
+        d.text((tx, y), ln, font=font(REG, 40), fill=INK_MUTED)
+        y += 56
+
+    # Accent pills row (mirrors the feature graphic)
+    pill_y = y + 34
+    px = tx
+    for colour in ACCENT_PILLS:
+        d.rounded_rectangle([px, pill_y, px + 66, pill_y + 16], radius=8, fill=colour)
+        px += 82
+
+    # Meta line
+    d.text((tx, pill_y + 52), meta_label, font=font(BOLD, 26), fill=INK_MUTED)
+
+    # Binary Meadow mark, bottom-right
+    mark = Image.open("public/apps/binary-meadow-mark-light.png").convert("RGBA")
+    mark.thumbnail((64, 64))
+    img.alpha_composite(mark, (W - 210, H - 92))
+    d.text((W - 132, H - 84), "Binary", font=font(BOLD, 22), fill=CREAM)
+    d.text((W - 132, H - 58), "Meadow", font=font(BOLD, 22), fill=CREAM)
+
+    img.convert("RGB").save(f"public/og/{slug}.png", quality=92)
+    print(f"{slug} OG (dark)")
+
+
 make_home()
 make_app("jannah-builder", "Jannah Builder",
          "Watch your spiritual journey grow.",
          "public/apps/jannah-builder.png", "Android")
-make_app("opdsy", "OPDSy", "Your self-hosted library, unified.",
-         "public/apps/opdsy.png", "Android")
+make_app_dark("opdsy", "OPDSy", "Your self-hosted library, unified.",
+              "public/apps/opdsy.png",
+              "OPDS reader  \u00b7  Self-hosted  \u00b7  Private sync")
 make_app("gridwatch", "GridWatch", "See every AI-assisted session.",
          "public/apps/gridwatch.png", "macOS & Windows")
