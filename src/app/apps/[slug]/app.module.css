@@ -16,6 +16,28 @@
   color: var(--green-900);
 }
 
+/* Anchor links on section titles */
+.anchorSection {
+  scroll-margin-top: 90px;
+}
+
+.anchorLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.anchorLink::after {
+  content: ' #';
+  opacity: 0;
+  color: var(--app-accent, var(--green-500));
+  transition: opacity 0.15s ease;
+}
+
+.anchorLink:hover::after,
+.anchorLink:focus::after {
+  opacity: 0.6;
+}
+
 .heroGrid {
   display: grid;
   grid-template-columns: 1fr;

@@ -128,10 +128,14 @@ export default async function AppPage({
       </section>
 
       {/* Features */}
-      <section className={styles.highlights}>
+      <section id="highlights" className={`${styles.highlights} ${styles.anchorSection}`}>
         <div className="container">
           <span className="eyebrow">What it does</span>
-          <h2 className="section-title">Highlights</h2>
+          <h2 className="section-title">
+            <a href="#highlights" className={styles.anchorLink}>
+              Highlights
+            </a>
+          </h2>
           <div className={styles.features}>
             {app.features.map((f) => (
               <div key={f.title} className={styles.feature}>
@@ -144,10 +148,14 @@ export default async function AppPage({
       </section>
 
       {/* Screenshots */}
-      <section className="section">
+      <section id="screenshots" className={`section ${styles.anchorSection}`}>
         <div className="container">
           <span className="eyebrow">A closer look</span>
-          <h2 className="section-title">Screenshots</h2>
+          <h2 className="section-title">
+            <a href="#screenshots" className={styles.anchorLink}>
+              Screenshots
+            </a>
+          </h2>
           {app.screenshots.length > 0 ? (
             <div
               className={`${styles.shotGrid} ${
@@ -193,14 +201,18 @@ export default async function AppPage({
       </section>
 
       {/* Download CTA */}
-      <section className="section">
+      <section id="download" className={`section ${styles.anchorSection}`}>
         <div className="container">
           <div
             className={styles.downloadCta}
             style={{ ['--app-accent' as string]: app.accent }}
           >
             <div>
-              <h2 className={styles.ctaTitle}>Get {app.name}</h2>
+              <h2 className={styles.ctaTitle}>
+                <a href="#download" className={styles.anchorLink}>
+                  Get {app.name}
+                </a>
+              </h2>
               <p className={styles.ctaText}>
                 {group === 'Mobile'
                   ? 'Available for Android. Store listings are on the way — grab the latest build below.'
@@ -213,10 +225,14 @@ export default async function AppPage({
       </section>
 
       {/* Privacy */}
-      <section className={styles.privacy}>
+      <section id="privacy" className={`${styles.privacy} ${styles.anchorSection}`}>
         <div className="container">
           <span className="eyebrow">Your data</span>
-          <h2 className="section-title">Privacy</h2>
+          <h2 className="section-title">
+            <a href="#privacy" className={styles.anchorLink}>
+              Privacy
+            </a>
+          </h2>
           <p className={styles.privacyText}>{app.privacy.summary}</p>
           <Link href={`/apps/${app.slug}/privacy/`} className={styles.privacyLink}>
             Read the {app.name} privacy policy →
