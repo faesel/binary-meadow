@@ -195,7 +195,7 @@ export const apps: App[] = [
     summary:
       'A modern, cross-platform reader that streams comics and books from multiple self-hosted OPDS servers in one unified library.',
     description:
-      'OPDSy is a fast, private comic and ebook reader for the books, comics and manga you already host yourself.\n\nConnect it to your OPDS servers — Komga, Kavita, Ubooquity, Calibre-Web and any OPDS 1.2 or 2.0 source — and browse them all together in one unified library.\n\nRead EPUB, MOBI, AZW3 and FB2 books or CBZ/CBR comics, listen to any book with built-in text-to-speech, and download titles for fully offline reading — with no account, no ads and no tracking of any kind.',
+      'OPDSy is a fast, private comic and ebook reader for the books, comics and manga you already host yourself.\n\nConnect it to your OPDS servers — Komga, Kavita, Ubooquity, Calibre-Web and any OPDS 1.2 or 2.0 source — and browse them all together in one unified library. Add on-device folders as a local library too, or open a file from any app to read it instantly.\n\nRead EPUB, MOBI, AZW3, FB2 and PDF books, CBZ/CBR comics, and Markdown with Mermaid diagrams; listen to any book with built-in text-to-speech; and download titles for fully offline reading — with no account, no ads and no tracking of any kind.',
     category: 'Books & Reference',
     icon: '/apps/opdsy.png',
     featureGraphic: '/apps/opdsy-feature.png',
@@ -245,6 +245,11 @@ export const apps: App[] = [
         description:
           'A resilient, multi-source reader rebuilt from the ground up for speed, reliability and privacy — and actively maintained.',
       },
+      {
+        title: 'Your own files, too',
+        description:
+          'Add on-device folders as a local library, or open any file straight from your file manager or share sheet — servers optional.',
+      },
     ],
     features: [
       {
@@ -255,7 +260,7 @@ export const apps: App[] = [
       {
         title: 'Books and comics, any format',
         description:
-          'Reads EPUB, MOBI, AZW3 and FB2 ebooks plus CBZ / CBR comics and manga — all from the servers you already run.',
+          'Reads EPUB, MOBI, AZW3, FB2 and PDF ebooks, CBZ / CBR comics and manga, and Markdown documents (with Mermaid.js diagrams) — from your servers or your own device.',
       },
       {
         title: 'A comic & manga reader',
@@ -266,6 +271,16 @@ export const apps: App[] = [
         title: 'Page streaming',
         description:
           'Comics stream page-by-page over OPDS-PSE with smart prefetching, so the next page is ready before you swipe — no full archive download needed to start reading.',
+      },
+      {
+        title: 'Your own files, no server needed',
+        description:
+          'Add any on-device folder as a local library — each with its own name and colour — and browse it alongside your OPDS sources. Or send a file to OPDSy from your file manager or any share sheet to open it straight in the reader.',
+      },
+      {
+        title: 'Built-in PDF & Markdown readers',
+        description:
+          'Read PDFs in-app with paged or vertical scrolling, fit-to-screen or fit-to-width, single- or two-page layouts, and pinch or double-tap zoom. Markdown renders cleanly, including Mermaid.js diagrams.',
       },
       {
         title: 'Listen with text-to-speech',
