@@ -156,7 +156,7 @@ export const apps: App[] = [
     summary:
       'A modern, cross-platform reader that streams comics and books from multiple self-hosted OPDS servers in one unified library.',
     description:
-      'OPDSy browses and streams comics and books from many OPDS servers at once — Ubooquity, Komga, Kavita and Calibre-Web — merged into a single home with per-source colour badges. Comics stream page-by-page over OPDS-PSE with smart prefetch, and each source loads independently so one broken server never takes down your library. Server passwords are kept in your device’s secure storage, and optional cross-device sync saves your library, favourites and reading progress to your own Google Drive — end-to-end encrypted so only your devices can read it. It is the resilient, multi-source spiritual successor to the discontinued Kuboo.',
+      'OPDSy is a fast, private comic and ebook reader for the books, comics and manga you already host yourself. Connect it to your OPDS servers — Komga, Kavita, Ubooquity, Calibre-Web and any OPDS 1.2 or 2.0 source — and it merges them into a single, unified library with per-source colour badges. Comics stream page-by-page over OPDS-PSE with smart prefetch, and each source loads independently so one offline or broken server never takes down the rest of your library. Read EPUB, MOBI, AZW3 and FB2 books or CBZ/CBR comics, listen to any book with built-in text-to-speech, and download titles for fully offline reading. Server passwords stay in your device’s secure keychain, and optional cross-device sync saves your library, favourites and reading progress to your own Google Drive — end-to-end encrypted so only your devices can read it. No account, no ads and no tracking of any kind. OPDSy is the resilient, multi-source spiritual successor to the discontinued Kuboo.',
     category: 'Books & Reference',
     icon: '/apps/opdsy.png',
     featureGraphic: '/apps/opdsy-feature.png',
@@ -187,29 +187,59 @@ export const apps: App[] = [
     ],
     features: [
       {
-        title: 'Unified library',
+        title: 'One library, many servers',
         description:
-          'Books and comics from many servers merged into one home, each tagged with a per-source colour badge.',
+          'Add as many OPDS sources as you like — Komga, Kavita, Ubooquity, Calibre-Web or any OPDS 1.2 / 2.0 server — merged into a single home, each tagged with a per-source colour badge.',
+      },
+      {
+        title: 'Books and comics, any format',
+        description:
+          'Reads EPUB, MOBI, AZW3 and FB2 ebooks plus CBZ / CBR comics and manga — all from the servers you already run.',
+      },
+      {
+        title: 'A comic & manga reader',
+        description:
+          'Paged or continuous vertical-scroll (webtoon) reading, left-to-right or right-to-left direction, fit-to-screen or fit-to-width, landscape dual-page spreads, and double-tap or pinch to zoom.',
       },
       {
         title: 'Page streaming',
         description:
-          'Comics stream page-by-page over OPDS-PSE — no full archive download needed to start reading.',
+          'Comics stream page-by-page over OPDS-PSE with smart prefetching, so the next page is ready before you swipe — no full archive download needed to start reading.',
+      },
+      {
+        title: 'Listen with text-to-speech',
+        description:
+          'Have any ebook read aloud with your device’s text-to-speech engine — flowing sentence by sentence and continuing across chapters, with adjustable speed, pitch and choice of offline or online voices.',
+      },
+      {
+        title: 'A proper reading experience',
+        description:
+          'Continue Reading remembers your place across every source. Mark favourites for one-tap access, track progress, and tune the ebook reader with adjustable fonts, line spacing and light, sepia or OLED-friendly dark themes.',
+      },
+      {
+        title: 'Read offline, anywhere',
+        description:
+          'Download comics and books straight to your device for reading with no connection at all. Interrupted downloads resume automatically and stay ready when you are.',
       },
       {
         title: 'Resilient by design',
         description:
-          'Every source loads independently; one offline or broken server never crashes the library.',
+          'Every source loads independently, so one offline, slow or broken server never crashes your library — and favourites and recent items stay visible even when a server is temporarily down.',
       },
       {
         title: 'Secure credentials',
         description:
-          'Server passwords are kept in your device’s secure storage (the Android Keystore) and excluded from persisted app state.',
+          'Server addresses, usernames and passwords are kept in your device’s secure storage (the Android Keystore) and excluded from persisted app state — never sent to Binary Meadow.',
       },
       {
         title: 'Private cross-device sync',
         description:
-          'Optionally sync your library, favourites and reading progress through your own Google Drive — end-to-end encrypted, readable only on your devices.',
+          'Optionally sync your library, favourites and reading progress through your own Google Drive — end-to-end encrypted with a passphrase-derived key, readable only on your devices.',
+      },
+      {
+        title: 'Private by design, zero tracking',
+        description:
+          'No account, no ads, no third-party analytics and no tracking of any kind. OPDSy connects only to the self-hosted servers you choose.',
       },
     ],
     privacy: {
