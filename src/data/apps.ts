@@ -72,7 +72,7 @@ export const apps: App[] = [
     summary:
       'A spiritually-sensitive prayer tracker that visualises consistent worship as a living, growing pixel-art landscape.',
     description:
-      'Jannah Builder lets you log your five daily prayers and watch your progress manifest as a beautiful, growing world inspired by Jannah (Paradise). It favours calm reflection over gamification, gentle encouragement over guilt, and gradual growth earned through consistent practice. Trees, flowers, animals and rivers appear as you stay consistent — and fade gently, never harshly, when days are missed.',
+      'Jannah Builder is a calm, spiritually-sensitive prayer tracker that turns your five daily prayers into a beautiful, growing pixel-art world inspired by Jannah (Paradise).\n\nIt favours calm reflection over gamification and gentle encouragement over guilt. Trees, flowers, buildings and roaming animals appear as you stay consistent — and when a day is missed, only one element is gently affected, so older progress is always preserved.\n\nThere are no streaks to break, no leaderboards and no comparisons. Everything works fully offline with no account required, and your prayer logs never leave your device.',
     category: 'Lifestyle / Wellbeing',
     icon: '/apps/jannah-builder.png',
     featureGraphic: '/apps/jannah-builder-feature.png',
@@ -93,9 +93,31 @@ export const apps: App[] = [
       },
     ],
     techStack: ['React Native', 'Expo SDK 54', 'TypeScript', 'Expo Router'],
+    highlights: [
+      {
+        title: 'Gentle, never guilt',
+        description:
+          'No streaks, no leaderboards, no comparisons — just calm encouragement. A missed day affects only one element, never your whole garden.',
+      },
+      {
+        title: 'A living Jannah map',
+        description:
+          'Watch a beautiful pixel-art world grow with your worship — trees, flowers, buildings and roaming wildlife.',
+      },
+      {
+        title: 'Private & fully offline',
+        description:
+          'No account, no analytics and no tracking of any kind. Every prayer log stays on your device.',
+      },
+      {
+        title: 'More than prayers',
+        description:
+          'Log Qur’an reading and dhikr for gentle visual enhancements — golden light and floating particles.',
+      },
+    ],
     features: [
       {
-        title: 'Prayer logging',
+        title: 'Five daily prayers',
         description:
           'Log Fajr, Dhuhr, Asr, Maghrib and Isha with subtle haptics and a gentle chime when the day is complete.',
       },
@@ -110,9 +132,29 @@ export const apps: App[] = [
           'Missed days affect one element at a time — newest first — so older progress is always preserved.',
       },
       {
-        title: 'Supportive practices',
+        title: 'Qur’an & dhikr logging',
         description:
-          'Optional Qur’an and dhikr logging enrich the ambience and occasionally grow lasting barakah flowers.',
+          'Simple daily yes/no logging enriches the ambience with golden light and floating particles, and occasionally grows lasting barakah flowers.',
+      },
+      {
+        title: 'Roaming wildlife',
+        description:
+          'Animated birds, rabbits, deer and squirrels bring your garden quietly to life.',
+      },
+      {
+        title: 'Seasonal moments',
+        description:
+          'Beautiful temporary items appear during long periods of consistency, then gently pass.',
+      },
+      {
+        title: 'A journey, not a competition',
+        description:
+          'Statistics are presented as a personal journey — no streaks displayed, no leaderboards, no comparisons.',
+      },
+      {
+        title: 'Fully offline, no account',
+        description:
+          'All data stays on your device and the app works without sign-in — nothing is sent to Binary Meadow.',
       },
     ],
     screenshots: [
@@ -308,7 +350,7 @@ export const apps: App[] = [
     summary:
       'A retro-Tron-themed desktop dashboard that turns your local GitHub Copilot CLI session data into a real-time control panel.',
     description:
-      'GridWatch reads the local session data written by GitHub Copilot CLI and presents it as a beautiful, real-time dashboard — giving you visibility into your AI-assisted workflow across every project. Browse sessions with live status and token usage, read full prompt history, track context compaction, explore an interactive skills graph, manage MCP and LSP servers, and analyse your sessions with AI insights. All wrapped in a neon Tron aesthetic.',
+      'GridWatch reads the local session data written by GitHub Copilot CLI and presents it as a beautiful, real-time dashboard — giving you visibility into your AI-assisted workflow across every project you work on.\n\nBrowse sessions with live status and token usage, read full prompt history, track context compaction, explore an interactive skills graph, and manage your MCP and LSP servers — all from one control panel.\n\nEverything runs locally on your machine, wrapped in a neon retro-Tron aesthetic. Optional AI Insights analyse your sessions using an AI provider you configure with your own API key.',
     category: 'Developer Tools',
     icon: '/apps/gridwatch.png',
     platforms: ['macos', 'windows'],
@@ -327,26 +369,83 @@ export const apps: App[] = [
       },
     ],
     techStack: ['Electron', 'React', 'TypeScript', 'React Flow'],
+    highlights: [
+      {
+        title: 'Everything runs locally',
+        description:
+          'GridWatch reads your Copilot CLI data on your own machine. Nothing is sent to us — optional AI Insights run only with a provider you configure.',
+      },
+      {
+        title: 'See every session',
+        description:
+          'Live status, token usage, prompt history and full-text search across every Copilot CLI session and project.',
+      },
+      {
+        title: 'Understand your skills',
+        description:
+          'An interactive graph of how your skills and agents connect, plus a builder for orchestrator workflows.',
+      },
+      {
+        title: 'Retro-Tron control panel',
+        description:
+          'Neon cyan, electric blue and orange on near-black — a dashboard that’s as good to look at as it is to use.',
+      },
+    ],
     features: [
       {
         title: 'Sessions overview',
         description:
-          'Browse every Copilot CLI session with live status, token utilisation, search, filtering and tagging.',
+          'Browse every Copilot CLI session with live status, token utilisation and last prompt, paginated for fast loading.',
       },
       {
-        title: 'Token usage graphs',
+        title: 'Search, filtering & tagging',
         description:
-          'Line charts track peak context-window usage over time, snapshotted so they survive log pruning.',
+          'Full-text search, multi-select tag filters and a session-type filter, plus custom tags and directory-based auto-tag rules.',
       },
       {
-        title: 'Skills graph & orchestrator',
+        title: 'Session type detection',
         description:
-          'An interactive node-link map of how your skills connect, with a builder for orchestrator workflows.',
+          'Automatically identifies research and code-review sessions with distinct badges by detecting the agents Copilot used.',
+      },
+      {
+        title: 'Prompt & token history',
+        description:
+          'Read every user message from a session, and track peak context-window usage over time with charts that survive Copilot’s log pruning.',
+      },
+      {
+        title: 'Compaction tracking',
+        description:
+          'See when Copilot compacts the conversation — trigger utilisation, messages replaced and tokens saved — with an inline checkpoint viewer.',
+      },
+      {
+        title: 'Skills management',
+        description:
+          'Browse, create, edit, duplicate, delete, import, export, tag and toggle your Copilot CLI skills, with a Tron-themed markdown viewer.',
+      },
+      {
+        title: 'Skills graph & orchestrator builder',
+        description:
+          'An interactive React Flow map of skill and agent relationships, with an edit mode to compose sequential or parallel orchestrator workflows that generate runnable SKILL.md blocks.',
       },
       {
         title: 'MCP & LSP dashboards',
         description:
-          'Inspect and toggle Model Context Protocol and Language Server Protocol servers to tame context bloat.',
+          'Inspect and enable/disable Model Context Protocol and Language Server Protocol servers, browse live tool catalogues, and tame context-window bloat.',
+      },
+      {
+        title: 'Agents panel',
+        description:
+          'View built-in and custom Copilot agents with per-agent session counts, usage stats and linked session history.',
+      },
+      {
+        title: 'Activity & AI Insights',
+        description:
+          'A GitHub-style 52-week activity heatmap, plus optional OpenAI-powered prompt-quality scoring and improvement suggestions.',
+      },
+      {
+        title: 'Manage & stay current',
+        description:
+          'Rename, archive or safely delete sessions, reveal reports and files in Finder or Explorer, with update notifications and 30-second auto-refresh.',
       },
     ],
     screenshots: [
