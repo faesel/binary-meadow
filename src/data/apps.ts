@@ -81,14 +81,13 @@ export const apps: App[] = [
     repository: 'https://github.com/faesel/jannah-builder',
     downloads: [
       {
-        label: 'Google Play',
-        href: '#',
-        platform: 'android',
-        comingSoon: true,
-      },
-      {
         label: 'Download APK',
         href: 'https://github.com/faesel/jannah-builder/releases',
+        platform: 'android',
+      },
+      {
+        label: 'Google Play',
+        href: 'https://play.google.com/store/apps/details?id=com.jannahbuilder',
         platform: 'android',
       },
     ],
