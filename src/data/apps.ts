@@ -230,7 +230,7 @@ export const apps: App[] = [
       { src: '/screenshots/opdsy/edit-libraries.jpg?v=3', alt: 'OPDSy editing an OPDS server connection' },
       { src: '/screenshots/opdsy/local-library.jpg?v=3', alt: 'OPDSy local library of imported files' },
       { src: '/screenshots/opdsy/audio.jpg?v=3', alt: 'OPDSy text-to-speech audio playback' },
-      { src: '/screenshots/opdsy/sync.jpg?v=3', alt: 'OPDSy cross-device sync settings' },
+      { src: '/screenshots/opdsy/sync.jpg?v=4', alt: 'OPDSy cross-device sync settings' },
       { src: '/screenshots/opdsy/appearance.jpg?v=3', alt: 'OPDSy reader appearance settings' },
       { src: '/screenshots/opdsy/ebook-mode.jpg?v=3', alt: 'OPDSy ebook reading mode options' },
     ],
