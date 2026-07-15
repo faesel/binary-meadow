@@ -18,6 +18,12 @@ export interface Screenshot {
   alt: string;
 }
 
+/** A segment of an attribution line; renders as a link when `href` is set. */
+export interface CreditPart {
+  text: string;
+  href?: string;
+}
+
 export interface PrivacyDataPoint {
   title: string;
   description: string;
@@ -58,6 +64,8 @@ export interface App {
   features: AppFeature[];
   techStack: string[];
   screenshots: Screenshot[];
+  /** Optional attribution shown beneath the screenshots (e.g. third-party artwork). */
+  screenshotsCredit?: CreditPart[];
   /** Accent colour pulled from each app's own identity. */
   accent: string;
   /** App-specific privacy policy, linkable from app stores. */
@@ -225,6 +233,23 @@ export const apps: App[] = [
       { src: '/screenshots/opdsy/sync.jpg?v=3', alt: 'OPDSy cross-device sync settings' },
       { src: '/screenshots/opdsy/appearance.jpg?v=3', alt: 'OPDSy reader appearance settings' },
       { src: '/screenshots/opdsy/ebook-mode.jpg?v=3', alt: 'OPDSy ebook reading mode options' },
+    ],
+    screenshotsCredit: [
+      { text: 'Comic and book artwork shown is for demonstration only. ' },
+      { text: 'Pepper&Carrot', href: 'https://www.peppercarrot.com/' },
+      { text: ' is by ' },
+      { text: 'David Revoy', href: 'https://www.davidrevoy.com/' },
+      { text: ', licensed under ' },
+      {
+        text: 'CC BY 4.0',
+        href: 'https://creativecommons.org/licenses/by/4.0/',
+      },
+      { text: '. Other comic covers are public-domain ' },
+      {
+        text: 'Golden Age comics',
+        href: 'https://digitalcomicmuseum.com/',
+      },
+      { text: ', and book covers are public-domain literary classics.' },
     ],
     highlights: [
       {

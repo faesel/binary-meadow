@@ -279,6 +279,20 @@
   }
 }
 
+/* Screenshot credit */
+.shotCredit {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 70ch;
+}
+
+.shotCredit a {
+  color: var(--green-700);
+  text-decoration: underline;
+}
+
 /* Download CTA */
 .downloadCta {
   background: var(--bg-soft);

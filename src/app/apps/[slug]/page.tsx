@@ -227,6 +227,24 @@ export default async function AppPage({
               ))}
             </div>
           )}
+          {app.screenshotsCredit && (
+            <p className={styles.shotCredit}>
+              {app.screenshotsCredit.map((part, i) =>
+                part.href ? (
+                  <a
+                    key={i}
+                    href={part.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {part.text}
+                  </a>
+                ) : (
+                  <span key={i}>{part.text}</span>
+                )
+              )}
+            </p>
+          )}
         </div>
       </section>
 
