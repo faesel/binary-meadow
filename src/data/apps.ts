@@ -202,7 +202,7 @@ export const apps: App[] = [
     summary:
       'A modern, cross-platform reader that streams comics and books from multiple self-hosted OPDS servers in one unified library.',
     description:
-      'OPDSy is a fast, private comic and ebook reader for the books, comics and manga you already host yourself.\n\nConnect it to your OPDS servers — Komga, Kavita, Ubooquity, Calibre-Web and any OPDS 1.2 or 2.0 source — and browse them all together in one unified library. Add on-device folders as a local library too, or open a file from any app to read it instantly.\n\nRead EPUB, MOBI, AZW3, FB2 and PDF books, CBZ/CBR comics, and Markdown with Mermaid diagrams; listen to any book with built-in text-to-speech; and download titles for fully offline reading — with no account, no ads and no tracking of any kind.',
+      'OPDSy is a fast, private comic and ebook reader for the books, comics and manga you already host yourself.\n\nConnect it to your OPDS servers — Komga, Kavita, Ubooquity and any OPDS 1.2 or 2.0 source — and browse them all together in one unified library. Add on-device folders as a local library too, or open a file from any app to read it instantly.\n\nRead EPUB, MOBI, AZW3, FB2 and PDF books, CBZ/CBR comics, and Markdown with Mermaid diagrams; listen to any book with built-in text-to-speech; and download titles for fully offline reading — with no account, no ads and no tracking of any kind.',
     category: 'Books & Reference',
     icon: '/apps/opdsy.png',
     featureGraphic: '/apps/opdsy-feature.png',
@@ -260,7 +260,7 @@ export const apps: App[] = [
       {
         title: 'One library, many servers',
         description:
-          'Komga, Kavita, Ubooquity, Calibre-Web and any OPDS 1.2 / 2.0 source, merged into a single unified home.',
+          'Komga, Kavita, Ubooquity and any OPDS 1.2 / 2.0 source, merged into a single unified home.',
       },
       {
         title: 'Comics, books and audio',
@@ -282,7 +282,7 @@ export const apps: App[] = [
       {
         title: 'One library, many servers',
         description:
-          'Add as many OPDS sources as you like — Komga, Kavita, Ubooquity, Calibre-Web or any OPDS 1.2 / 2.0 server — merged into a single home, each tagged with a per-source colour badge.',
+          'Add as many OPDS sources as you like — Komga, Kavita, Ubooquity or any OPDS 1.2 / 2.0 server — merged into a single home, each tagged with a per-source colour badge.',
       },
       {
         title: 'Books and comics, any format',
@@ -372,7 +372,7 @@ export const apps: App[] = [
         },
       ],
       thirdParties: [
-        'Your self-hosted OPDS servers (e.g. Ubooquity, Komga, Kavita, Calibre-Web) — contacted only with the details you provide, under their own policies.',
+        'Your self-hosted OPDS servers (e.g. Ubooquity, Komga, Kavita) — contacted only with the details you provide, under their own policies.',
         'Google Drive — used only if you enable cross-device sync, to store an end-to-end-encrypted copy of your data in a hidden, app-private folder of your own Google account. OPDSy requests only the app-data scope (drive.appdata) and cannot see any of your other Drive files.',
         'Google Play — distributes the app and processes installs under its own privacy policy.',
       ],
