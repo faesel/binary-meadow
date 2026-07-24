@@ -321,6 +321,11 @@ export const apps: App[] = [
           'Continue Reading remembers your place across every source. Mark favourites for one-tap access, track progress, and tune the ebook reader with adjustable fonts, line spacing and light, sepia or OLED-friendly dark themes.',
       },
       {
+        title: 'Highlights & bookmarks',
+        description:
+          'Select any passage to highlight it in a choice of colours, attach a note, or copy and share the text — and bookmark pages to jump back to the moments that matter. Your highlights, notes and bookmarks stay on your device.',
+      },
+      {
         title: 'Read offline, anywhere',
         description:
           'Download comics and books straight to your device for reading with no connection at all. Interrupted downloads resume automatically and stay ready when you are.',
