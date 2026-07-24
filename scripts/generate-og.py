@@ -117,5 +117,6 @@ def make_app_feature(slug, feature_path):
 make_home()
 make_app_feature("jannah-builder", "public/apps/jannah-builder-feature.png")
 make_app_feature("opdsy", "public/apps/opdsy-feature.png")
+make_app_feature("spinely", "public/apps/spinely-feature.png")
 make_app("gridwatch", "GridWatch", "See every AI-assisted session.",
          "public/apps/gridwatch.png", "macOS & Windows")
