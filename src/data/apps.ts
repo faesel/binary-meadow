@@ -602,6 +602,7 @@ export const apps: App[] = [
     screenshots: [
       { src: '/screenshots/spinely/1-shelves.jpg', alt: 'Spinely bookcases overview with an interactive visual shelf' },
       { src: '/screenshots/spinely/1.1-shelves.jpg', alt: 'Spinely interactive visual shelf built from real book spine photos, organised by author' },
+      { src: '/screenshots/spinely/1.2-shelf-order.jpg', alt: 'Spinely organise screen stacking sort facets like author, series and spine colour with a live order preview' },
       { src: '/screenshots/spinely/2-shelf-detail.jpg', alt: 'Spinely bookcase detail with organise, add books and fit options' },
       { src: '/screenshots/spinely/3-library.jpg', alt: 'Spinely library of logged books with search and filters' },
       { src: '/screenshots/spinely/4-log-book.jpg', alt: 'Spinely log a book screen with barcode scan, ISBN and search' },
