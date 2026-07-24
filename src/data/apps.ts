@@ -522,6 +522,115 @@ export const apps: App[] = [
         'GridWatch is a developer tool intended for adults. It collects no personal data from any user, including children — all session data stays on your own device and is never sent to us.',
     },
   },
+  {
+    slug: 'spinely',
+    name: 'Spinely',
+    tagline: 'Scan spines, sort & visualise your shelves.',
+    summary:
+      'An Android-first bookshelf organiser that scans book spines, sorts your collection and turns your physical shelves into an interactive visual layout.',
+    description:
+      'Spinely helps you organise the physical bookshelves you already own.\n\nDefine your bookcases and shelves, then log books by scanning their ISBN barcode — with a manual search fallback — and photograph and crop each book’s spine. Choose how to organise (by author, colour, category and more) and get a beautiful, interactive visual shelf.\n\nWhen a shelf overflows, drag the pin inward to set its cut-off: overflow books grey out and flow to the next shelf, committed with a simple confirmation. Everything is local-only — your library stays on your device.',
+    category: 'Books & Reference',
+    icon: '/apps/spinely.png',
+    featureGraphic: '/apps/spinely-feature.png',
+    platforms: ['android'],
+    accent: '#8a5a2b',
+    downloads: [
+      {
+        label: 'Google Play',
+        href: '#',
+        platform: 'android',
+        comingSoon: true,
+      },
+    ],
+    techStack: ['Expo SDK 56', 'React Native', 'TypeScript', 'TanStack Query'],
+    highlights: [
+      {
+        title: 'Scan & catalogue in seconds',
+        description:
+          'Log books by scanning their ISBN barcode, with automatic metadata lookup and a manual search fallback when you need it.',
+      },
+      {
+        title: 'Your shelves, visualised',
+        description:
+          'Photograph and crop each book’s spine to build an interactive, true-to-life visual layout of your bookcases.',
+      },
+      {
+        title: 'Private & local-only',
+        description:
+          'No account and no tracking — your library, spines and layout stay on your device.',
+      },
+    ],
+    features: [
+      {
+        title: 'Bookcases & shelves',
+        description:
+          'Define your real bookcases and shelves, then arrange your collection to match the room in front of you.',
+      },
+      {
+        title: 'Barcode scanning & metadata',
+        description:
+          'Scan an ISBN to pull in book metadata from Open Library and Google Books, with a manual search fallback.',
+      },
+      {
+        title: 'Spine capture & crop',
+        description:
+          'Photograph each book’s spine and crop it precisely, then tag its dominant colour for colour-based sorting.',
+      },
+      {
+        title: 'Flexible organisation',
+        description:
+          'Sort and distribute your books by author, colour, category and more, with an engine that lays them out across your shelves.',
+      },
+      {
+        title: 'Interactive visual shelf',
+        description:
+          'Browse a beautiful, true-to-scale representation of your bookcases built from your own spine photos.',
+      },
+      {
+        title: 'Draggable overflow pin',
+        description:
+          'When a shelf fills up, drag the pin inward to set its cut-off — overflow books grey out and flow to the next shelf, committed with a confirmation.',
+      },
+    ],
+    screenshots: [
+      { src: '/screenshots/spinely/shelves.jpg', alt: 'Spinely interactive visual shelf' },
+      { src: '/screenshots/spinely/library.jpg', alt: 'Spinely library of logged books' },
+      { src: '/screenshots/spinely/scan.jpg', alt: 'Spinely ISBN barcode scanning screen' },
+      { src: '/screenshots/spinely/spine-crop.jpg', alt: 'Spinely spine photo capture and crop' },
+      { src: '/screenshots/spinely/organise.jpg', alt: 'Spinely organisation scheme options' },
+      { src: '/screenshots/spinely/settings.jpg', alt: 'Spinely settings screen' },
+    ],
+    privacy: {
+      summary:
+        'Spinely is local-first. Your bookcases, books and spine photos stay on your device and are never sent to us.',
+      collectsPersonalData: false,
+      dataHandling: [
+        {
+          title: 'Library & spine photos',
+          description:
+            'Your bookcases, shelves, logged books and the spine photos you capture are stored locally on your device. They are not transmitted to Binary Meadow or any third party.',
+        },
+        {
+          title: 'No account required',
+          description:
+            'The app works without sign-in. We do not ask for your name, email, phone number or location, and we do not build a profile of you.',
+        },
+        {
+          title: 'No analytics or tracking',
+          description:
+            'Spinely does not embed advertising SDKs or third-party analytics, and does not track your activity across other apps or websites.',
+        },
+      ],
+      thirdParties: [
+        'Open Library — queried to look up book metadata from an ISBN, under its own privacy policy.',
+        'Google Books — queried to look up book metadata from an ISBN, under Google’s privacy policy.',
+        'Google Play — distributes the app and processes installs under its own privacy policy.',
+      ],
+      childrenNote:
+        'Spinely is a family-friendly app suitable for all ages. Because it is local-first and collects no personal data, it can be used safely by children as well as adults.',
+    },
+  },
 ];
 
 export function getApp(slug: string): App | undefined {
