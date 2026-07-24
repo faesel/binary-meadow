@@ -538,7 +538,7 @@ export const apps: App[] = [
       'Spinely helps you organise the physical bookshelves you already own.\n\nDefine your bookcases and shelves, then log books by scanning their ISBN barcode — with a manual search fallback — and photograph and crop each book’s spine. Choose how to organise (by author, colour, category and more) and get a beautiful, interactive visual shelf.\n\nWhen a shelf overflows, drag the pin inward to set its cut-off: overflow books grey out and flow to the next shelf, committed with a simple confirmation. Everything is local-only — your library stays on your device.',
     category: 'Books & Reference',
     icon: '/apps/spinely.png',
-    featureGraphic: '/apps/spinely-feature.png',
+    featureGraphic: '/apps/spinely-feature.png?v=2',
     platforms: ['android'],
     accent: '#8a5a2b',
     downloads: [
