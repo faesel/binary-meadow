@@ -279,6 +279,16 @@
   }
 }
 
+/* Tablet screenshots subheading */
+.shotSubhead {
+  margin-top: 3rem;
+  margin-bottom: -0.5rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
+
 /* Screenshot credit */
 .shotCredit {
   margin-top: 1.5rem;

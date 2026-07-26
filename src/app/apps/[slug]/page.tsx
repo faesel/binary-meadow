@@ -227,6 +227,24 @@ export default async function AppPage({
               ))}
             </div>
           )}
+          {app.tabletScreenshots && app.tabletScreenshots.length > 0 && (
+            <>
+              <h3 className={styles.shotSubhead}>On a tablet</h3>
+              <div className={styles.shotGrid}>
+                {app.tabletScreenshots.map((s) => (
+                  <figure key={s.src} className={styles.shot}>
+                    <Image
+                      src={s.src}
+                      alt={s.alt}
+                      width={1280}
+                      height={800}
+                      className={styles.shotImg}
+                    />
+                  </figure>
+                ))}
+              </div>
+            </>
+          )}
           {app.screenshotsCredit && (
             <p className={styles.shotCredit}>
               {app.screenshotsCredit.map((part, i) =>

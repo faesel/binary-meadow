@@ -64,6 +64,8 @@ export interface App {
   features: AppFeature[];
   techStack: string[];
   screenshots: Screenshot[];
+  /** Landscape tablet screenshots, shown in a separate section below the phone screenshots. */
+  tabletScreenshots?: Screenshot[];
   /** Optional attribution shown beneath the screenshots (e.g. third-party artwork). */
   screenshotsCredit?: CreditPart[];
   /** Accent colour pulled from each app's own identity. */
@@ -234,6 +236,17 @@ export const apps: App[] = [
       { src: '/screenshots/opdsy/sync.jpg?v=5', alt: 'OPDSy cross-device sync settings' },
       { src: '/screenshots/opdsy/appearance.jpg?v=5', alt: 'OPDSy reader appearance settings' },
       { src: '/screenshots/opdsy/ebook-mode.jpg?v=5', alt: 'OPDSy ebook reading mode options' },
+    ],
+    tabletScreenshots: [
+      { src: '/screenshots/opdsy/tablet/1-home.jpg', alt: 'OPDSy on a tablet — home screen with continue reading and favourites' },
+      { src: '/screenshots/opdsy/tablet/2-library.jpg', alt: 'OPDSy on a tablet — unified library browsing view' },
+      { src: '/screenshots/opdsy/tablet/3-books.jpg', alt: 'OPDSy on a tablet — book list with cover art' },
+      { src: '/screenshots/opdsy/tablet/3.5-book.jpg', alt: 'OPDSy on a tablet — ebook reader in a two-page layout with highlighting and audio' },
+      { src: '/screenshots/opdsy/tablet/4-comics.jpg', alt: 'OPDSy on a tablet — comic reader in a two-page spread' },
+      { src: '/screenshots/opdsy/tablet/5-downloads.jpg', alt: 'OPDSy on a tablet — offline downloads screen' },
+      { src: '/screenshots/opdsy/tablet/6-settings.jpg', alt: 'OPDSy on a tablet — settings screen' },
+      { src: '/screenshots/opdsy/tablet/7-libraries.jpg', alt: 'OPDSy on a tablet — connected OPDS servers list' },
+      { src: '/screenshots/opdsy/tablet/8-sync.jpg', alt: 'OPDSy on a tablet — cross-device sync settings' },
     ],
     screenshotsCredit: [
       { text: 'Comic and book artwork shown is for demonstration only. ' },
