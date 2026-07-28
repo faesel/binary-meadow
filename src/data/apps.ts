@@ -4,8 +4,6 @@ export interface DownloadLink {
   label: string;
   href: string;
   platform: Platform;
-  /** Placeholder until the real store listing is live. */
-  comingSoon?: boolean;
 }
 
 export interface AppFeature {
@@ -557,9 +555,8 @@ export const apps: App[] = [
     downloads: [
       {
         label: 'Google Play',
-        href: '#',
+        href: 'https://play.google.com/store/apps/details?id=com.spinely',
         platform: 'android',
-        comingSoon: true,
       },
     ],
     techStack: ['Expo SDK 56', 'React Native', 'TypeScript', 'TanStack Query'],

@@ -97,8 +97,8 @@ Actions** (the deploy workflow does this automatically via
 
 - **Company details** in `src/lib/site.ts` — replace the placeholder company
   number, registered office, and contact email with the official record.
-- **Store links** in `src/data/apps.ts` — the Google Play buttons are marked
-  *Coming soon*; swap in real store URLs when listings are published.
+- **Store links** in `src/data/apps.ts` — keep the Google Play and release URLs
+  in step with the published store listings.
 - **Legal pages** — `privacy` and `terms` are templates and should be reviewed
   by a qualified adviser.
 - **DNS** — point `www.binarymeadow.com` at GitHub Pages (CNAME to

@@ -163,12 +163,6 @@ img {
   color: var(--green-700);
 }
 
-.btn-disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
 .visually-hidden {
   position: absolute;
   width: 1px;

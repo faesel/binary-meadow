@@ -26,22 +26,6 @@ export default function DownloadButtons({
   return (
     <div className={`${styles.group} ${size === 'sm' ? styles.sm : ''}`}>
       {downloads.map((dl) => {
-        const isPlaceholder = dl.comingSoon || dl.href === '#';
-
-        if (isPlaceholder) {
-          return (
-            <span
-              key={dl.label}
-              className={`btn btn-ghost btn-disabled ${styles.btn}`}
-              aria-disabled="true"
-              title="Store listing coming soon"
-            >
-              {dl.label}
-              <span className={styles.soon}>Soon</span>
-            </span>
-          );
-        }
-
         if (isGooglePlay(dl)) {
           return (
             <a
