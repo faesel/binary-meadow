@@ -555,6 +555,7 @@ export const apps: App[] = [
     featureGraphic: '/apps/spinely-feature.png?v=2',
     platforms: ['android'],
     accent: '#8a5a2b',
+    crossPromo: 'opdsy',
     downloads: [
       {
         label: 'Google Play',
