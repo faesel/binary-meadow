@@ -355,3 +355,63 @@
 .privacyLink:hover {
   color: var(--green-900);
 }
+
+/* Cross-promotion banner */
+.promo {
+  padding: 0 0 5rem;
+}
+
+.promoBanner {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+  padding: 1.1rem 1.35rem;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--app-accent, var(--green-500));
+  border-radius: var(--radius-lg);
+  color: inherit;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.promoBanner:hover {
+  border-color: var(--app-accent, var(--green-500));
+  transform: translateY(-2px);
+}
+
+.promoIcon {
+  border-radius: 14px;
+  flex-shrink: 0;
+}
+
+.promoBody {
+  flex: 1 1 14rem;
+}
+
+.promoEyebrow {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.promoTitle {
+  margin-top: 0.2rem;
+  font-size: 1.15rem;
+}
+
+.promoText {
+  margin-top: 0.15rem;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.promoCta {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--app-accent, var(--green-700));
+  white-space: nowrap;
+}

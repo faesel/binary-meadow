@@ -58,6 +58,7 @@ export default async function AppPage({
   if (!app) notFound();
 
   const group = platformGroup(app.platforms);
+  const promo = app.crossPromo ? getApp(app.crossPromo) : undefined;
 
   return (
     <article>
@@ -305,6 +306,37 @@ export default async function AppPage({
           </Link>
         </div>
       </section>
+
+      {/* Cross-promotion */}
+      {promo && (
+        <section className={styles.promo}>
+          <div className="container">
+            <Link
+              href={`/apps/${promo.slug}/`}
+              className={styles.promoBanner}
+              style={{ ['--app-accent' as string]: promo.accent }}
+            >
+              <Image
+                src={promo.icon}
+                alt={`${promo.name} icon`}
+                width={64}
+                height={64}
+                className={styles.promoIcon}
+              />
+              <div className={styles.promoBody}>
+                <span className={styles.promoEyebrow}>
+                  Also from {company.name}
+                </span>
+                <h2 className={styles.promoTitle}>{promo.name}</h2>
+                <p className={styles.promoText}>{promo.tagline}</p>
+              </div>
+              <span className={styles.promoCta} aria-hidden="true">
+                Check it out →
+              </span>
+            </Link>
+          </div>
+        </section>
+      )}
     </article>
   );
 }

@@ -68,6 +68,8 @@ export interface App {
   screenshotsCredit?: CreditPart[];
   /** Accent colour pulled from each app's own identity. */
   accent: string;
+  /** Slug of a sibling app promoted in a banner at the foot of this app's page. */
+  crossPromo?: string;
   /** App-specific privacy policy, linkable from app stores. */
   privacy: AppPrivacy;
 }
@@ -208,6 +210,7 @@ export const apps: App[] = [
     featureGraphic: '/apps/opdsy-feature.png',
     platforms: ['android'],
     accent: '#1f6f8b',
+    crossPromo: 'spinely',
     downloads: [
       {
         label: 'Google Play',
