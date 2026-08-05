@@ -2,7 +2,7 @@
   "name": "binary-meadow-website",
   "version": "1.0.0",
   "private": true,
-  "description": "Binary Meadow Ltd — app showcase website",
+  "description": "Binary Meadow Ltd \u2014 app showcase website",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,7 +11,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "next": "^16.2.9",
+    "next": "^16.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -22,6 +22,7 @@
     "typescript": "^6.0.3"
   },
   "overrides": {
-    "postcss": "^8.5.10"
+    "postcss": "^8.5.25",
+    "sharp": "^0.35.3"
   }
 }
