@@ -200,11 +200,11 @@ export const apps: App[] = [
   {
     slug: 'opdsy',
     name: 'OPDSy',
-    tagline: 'Your self-hosted library, unified.',
+    tagline: 'Every book you own, in one reader.',
     summary:
-      'A modern, cross-platform reader that streams comics and books from multiple self-hosted OPDS servers in one unified library.',
+      'A fast, private comic, manga and ebook reader for the files on your device and your self-hosted OPDS servers — together in one unified library.',
     description:
-      'OPDSy is a fast, private comic and ebook reader for the books, comics and manga you already host yourself.\n\nConnect it to your OPDS servers — Komga, Kavita, Ubooquity and any OPDS 1.2 or 2.0 source — and browse them all together in one unified library. Add on-device folders as a local library too, or open a file from any app to read it instantly.\n\nRead EPUB, MOBI, AZW3, FB2 and PDF books, CBZ/CBR comics, and Markdown with Mermaid diagrams; listen to any book with built-in text-to-speech; and download titles for fully offline reading — with no account, no ads and no tracking of any kind.',
+      'OPDSy is a fast, private comic, manga and ebook reader that works with your own on-device files, your self-hosted OPDS servers, or both at once.\n\nAdd any folder on your device as a local library and read straight away — no server required. Or open a file from your file manager or any share sheet and start reading instantly. When you do self-host, connect your OPDS servers — Komga, Kavita, Ubooquity, Calibre-Web, BookOrbit and any OPDS 1.2 or 2.0 source — and browse everything together alongside your local files.\n\nRead EPUB, MOBI, AZW3, FB2 and PDF books, CBZ/CBR comics and manga, and Markdown with Mermaid.js diagrams; highlight passages and bookmark pages; listen to any book with built-in text-to-speech; and download titles for fully offline reading — with no account, no ads and no tracking of any kind.',
     category: 'Books & Reference',
     icon: '/apps/opdsy.png',
     featureGraphic: '/apps/opdsy-feature.png',
@@ -273,36 +273,41 @@ export const apps: App[] = [
           'No account, no ads, no analytics and no tracking of any kind. Your reading is nobody’s business but yours.',
       },
       {
-        title: 'One library, many servers',
+        title: 'Your own files, no server needed',
         description:
-          'Komga, Kavita, Ubooquity and any OPDS 1.2 / 2.0 source, merged into a single unified home.',
+          'Add any folder on your device as a local library, or open a file straight from your file manager or share sheet. OPDS is optional.',
+      },
+      {
+        title: 'One library, local and self-hosted',
+        description:
+          'On-device folders plus Komga, Kavita, Ubooquity, Calibre-Web, BookOrbit and any OPDS 1.2 / 2.0 source, merged into a single unified home.',
       },
       {
         title: 'Comics, books and audio',
         description:
-          'Stream comics and manga, read ebooks in multiple formats, or have any book read aloud with text-to-speech.',
+          'Read comics and manga, ebooks in EPUB, MOBI, AZW3 and FB2, PDFs and Markdown — or have any book read aloud with text-to-speech.',
       },
       {
         title: 'The successor to Kuboo',
         description:
           'A resilient, multi-source reader rebuilt from the ground up for speed, reliability and privacy — and actively maintained.',
       },
-      {
-        title: 'Your own files, too',
-        description:
-          'Add on-device folders as a local library, or open any file straight from your file manager or share sheet — servers optional.',
-      },
     ],
     features: [
       {
-        title: 'One library, many servers',
+        title: 'Your own files, no server needed',
         description:
-          'Add as many OPDS sources as you like — Komga, Kavita, Ubooquity or any OPDS 1.2 / 2.0 server — merged into a single home, each tagged with a per-source colour badge.',
+          'Add any on-device folder as a local library — each with its own name and colour — and browse it alongside everything else. Or send a file to OPDSy from your file manager or any share sheet to open it straight in the reader.',
+      },
+      {
+        title: 'One library, many sources',
+        description:
+          'Mix local folders with as many OPDS servers as you like — Komga, Kavita, Ubooquity, Calibre-Web, BookOrbit or any OPDS 1.2 / 2.0 source — merged into a single home, each tagged with a per-source colour badge.',
       },
       {
         title: 'Books and comics, any format',
         description:
-          'Reads EPUB, MOBI, AZW3, FB2 and PDF ebooks, CBZ / CBR comics and manga, and Markdown documents (with Mermaid.js diagrams) — from your servers or your own device.',
+          'Reads EPUB, MOBI, AZW3, FB2 and PDF ebooks, CBZ / CBR comics and manga, and Markdown documents (with Mermaid.js diagrams) — from your device or your servers.',
       },
       {
         title: 'A comic & manga reader',
@@ -312,12 +317,7 @@ export const apps: App[] = [
       {
         title: 'Page streaming',
         description:
-          'Comics stream page-by-page over OPDS-PSE with smart prefetching, so the next page is ready before you swipe — no full archive download needed to start reading.',
-      },
-      {
-        title: 'Your own files, no server needed',
-        description:
-          'Add any on-device folder as a local library — each with its own name and colour — and browse it alongside your OPDS sources. Or send a file to OPDSy from your file manager or any share sheet to open it straight in the reader.',
+          'Comics on a server stream page-by-page over OPDS-PSE with smart prefetching, so the next page is ready before you swipe — no full archive download needed to start reading.',
       },
       {
         title: 'Built-in PDF & Markdown readers',
@@ -332,22 +332,27 @@ export const apps: App[] = [
       {
         title: 'A proper reading experience',
         description:
-          'Continue Reading remembers your place across every source. Mark favourites for one-tap access, track progress, and tune the ebook reader with adjustable fonts, line spacing and light, sepia or OLED-friendly dark themes.',
+          'Continue Reading remembers your place across every source, local or remote. Mark books and folders as favourites for one-tap access, track progress, and tune the ebook reader with adjustable fonts, line spacing and light, sepia or OLED-friendly dark themes.',
       },
       {
         title: 'Highlights & bookmarks',
         description:
-          'Select any passage to highlight it in a choice of colours, attach a note, or copy and share the text — and bookmark pages to jump back to the moments that matter. Your highlights, notes and bookmarks stay on your device.',
+          'Select any passage to highlight it in one of five colours, attach a note, or copy and share the text — and bookmark a place in any book, PDF or comic. Everything lands in one list, and travels with you if you enable sync.',
+      },
+      {
+        title: 'E-ink friendly',
+        description:
+          'Independent toggles for a high-contrast black-on-white theme and for switching animations off, to avoid ghosting on slow-refresh screens such as Onyx Boox.',
       },
       {
         title: 'Read offline, anywhere',
         description:
-          'Download comics and books straight to your device for reading with no connection at all. Interrupted downloads resume automatically and stay ready when you are.',
+          'Files in a local library are already offline, and anything on a server can be downloaded straight to your device. Interrupted downloads resume automatically and stay ready when you are.',
       },
       {
         title: 'Resilient by design',
         description:
-          'Every source loads independently, so one offline, slow or broken server never crashes your library — and favourites and recent items stay visible even when a server is temporarily down.',
+          'Every source loads independently, so one offline, slow or broken server never crashes your library — and favourites, local files and recent items stay visible even when a server is temporarily down.',
       },
       {
         title: 'Secure credentials',
@@ -357,12 +362,12 @@ export const apps: App[] = [
       {
         title: 'Private cross-device sync',
         description:
-          'Optionally sync your library, favourites and reading progress through your own Google Drive — end-to-end encrypted with a passphrase-derived key, readable only on your devices.',
+          'Optionally sync your library, favourites, reading progress, highlights and bookmarks through your own Google Drive — end-to-end encrypted with a passphrase-derived key, readable only on your devices.',
       },
     ],
     privacy: {
       summary:
-        'OPDSy connects only to the self-hosted servers you configure. It has no Binary Meadow account and no analytics, and optional cross-device sync is end-to-end encrypted inside your own Google Drive — so we never see your library, reading activity or credentials.',
+        'OPDSy reads files on your own device and connects only to the self-hosted servers you configure. It has no Binary Meadow account and no analytics, and optional cross-device sync is end-to-end encrypted inside your own Google Drive — so we never see your library, reading activity or credentials.',
       collectsPersonalData: false,
       dataHandling: [
         {
@@ -373,7 +378,7 @@ export const apps: App[] = [
         {
           title: 'Your library content',
           description:
-            'Books and comics are streamed directly between your device and your own servers. Binary Meadow has no access to your library, reading activity, or the content you view.',
+            'Files you add from your device stay on your device and are never uploaded. Books and comics on a server are streamed directly between your device and your own server. Binary Meadow has no access to your library, reading activity, or the content you view.',
         },
         {
           title: 'Cross-device sync (optional)',
@@ -397,7 +402,7 @@ export const apps: App[] = [
         'Google Play — distributes the app and processes installs under its own privacy policy.',
       ],
       childrenNote:
-        'OPDSy is suitable for all ages and can be used in a family or children’s setting. As it displays only the content on the servers you configure, the person setting up those servers controls what is available — so we recommend that a parent or guardian configures appropriate sources for younger users.',
+        'OPDSy is suitable for all ages and can be used in a family or children’s setting. As it displays only the files and servers you configure, the person setting those up controls what is available — so we recommend that a parent or guardian chooses appropriate folders and sources for younger users.',
     },
   },
   {
