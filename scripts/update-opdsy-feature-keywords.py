@@ -1,6 +1,22 @@
 #!/usr/bin/env python3
 """Replace the keyword strip at the bottom of the OPDSy feature graphic.
 
+SUPERSEDED — DO NOT RUN. Kept only as a record of how the previous artwork was
+patched.
+
+This edits fixed pixel coordinates in the *old* OPDSy feature graphic, which had
+a keyword strip at (59, 423) over a smooth vertical gradient. That artwork has
+been replaced by the "trio, fanned stack" design, which has no keyword strip and
+a black ground with device frames. Running this now would stamp a stray line of
+text over the new graphic and rebuild a band of background that is no longer a
+clean gradient.
+
+The feature graphic is now generated in the OPDSy repo — see
+`store/scripts/generate-feature-graphics.mjs` and `store/feature-graphics/`
+there. Change the copy at source and re-export rather than patching pixels here.
+
+Original note follows.
+
 The original line read "OPDS reader · Self-hosted · Private sync", which implied
 OPDSy only reads OPDS servers. OPDSy is also a local reader, so the strip is
 rewritten to lead with on-device files.
@@ -8,7 +24,14 @@ rewritten to lead with on-device files.
 The band behind the text is rebuilt by interpolating vertically between the two
 clean rows either side of it, which reproduces the background gradient exactly.
 """
+import sys
+
 from PIL import Image, ImageDraw, ImageFont
+
+sys.exit(
+    "update-opdsy-feature-keywords.py is superseded and would damage the current "
+    "feature graphic. See the module docstring."
+)
 
 TARGETS = [
     "public/apps/opdsy-feature.png",

@@ -258,7 +258,7 @@ export const apps: App[] = [
       'Most readers make you choose: local files or a self-hosted server. OPDSy merges both into a single unified library — the folders on your device sitting alongside Komga, Kavita, Ubooquity, Calibre-Web, BookOrbit and any OPDS 1.2 or 2.0 source, each tagged with its own colour.\n\nThat means you can start with nothing but a folder of files — add it as a local library, or open a book straight from your file manager or share sheet — and add servers later, or never. Continue Reading, favourites and search work across everything at once, whichever source a book came from.\n\nRead EPUB, MOBI, AZW3, FB2 and PDF books, CBZ/CBR comics and manga, and Markdown with Mermaid.js diagrams; highlight passages and bookmark pages; listen to any book with built-in text-to-speech; and download titles for fully offline reading — with no account, no ads and no tracking of any kind.',
     category: 'Books & Reference',
     icon: '/apps/opdsy.png',
-    featureGraphic: '/apps/opdsy-feature.png',
+    featureGraphic: '/apps/opdsy-feature.png?v=2',
     platforms: ['android'],
     accent: '#1f6f8b',
     crossPromo: 'spinely',
