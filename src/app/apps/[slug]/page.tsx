@@ -8,9 +8,13 @@ import {
   JsonLd,
   softwareApplicationSchema,
   breadcrumbSchema,
+  faqPageSchema,
 } from '@/lib/jsonld';
 import PlatformBadge, { platformGroup } from '@/components/PlatformBadge';
 import DownloadButtons from '@/components/DownloadButtons';
+import ComparisonTable from '@/components/ComparisonTable';
+import Faq from '@/components/Faq';
+import QrDownload from '@/components/QrDownload';
 import styles from './app.module.css';
 
 export function generateStaticParams() {
@@ -59,10 +63,14 @@ export default async function AppPage({
 
   const group = platformGroup(app.platforms);
   const promo = app.crossPromo ? getApp(app.crossPromo) : undefined;
+  const playLink = app.downloads.find((d) =>
+    d.href.includes('play.google.com'),
+  );
 
   return (
     <article>
       <JsonLd data={softwareApplicationSchema(app)} />
+      {app.faqs && <JsonLd data={faqPageSchema(app.faqs)} />}
       <JsonLd
         data={breadcrumbSchema([
           { name: 'Home', url: `${company.url}/` },
@@ -90,14 +98,23 @@ export default async function AppPage({
             />
           )}
           <div className={styles.heroGrid}>
-            <Image
-              src={app.icon}
-              alt={`${app.name} icon`}
-              width={120}
-              height={120}
-              className={styles.icon}
-              priority
-            />
+            <div className={styles.heroAside}>
+              <Image
+                src={app.icon}
+                alt={`${app.name} icon`}
+                width={120}
+                height={120}
+                className={styles.icon}
+                priority
+              />
+              {playLink && (
+                <QrDownload
+                  slug={app.slug}
+                  name={app.name}
+                  href={playLink.href}
+                />
+              )}
+            </div>
             <div className={styles.heroBody}>
               <div className={styles.heroMeta}>
                 <span className={styles.group}>
@@ -117,6 +134,11 @@ export default async function AppPage({
                 ))}
               </div>
               <DownloadButtons downloads={app.downloads} />
+              {app.pricing && (
+                <p className={styles.pricing}>
+                  <span className={styles.pricingBadge}>{app.pricing.label}</span>
+                </p>
+              )}
               {app.repository && (
                 <a
                   href={app.repository}
@@ -267,6 +289,52 @@ export default async function AppPage({
         </div>
       </section>
 
+      {/* How it compares */}
+      {app.comparison && (
+        <section
+          id="compare"
+          className={`${styles.compare} ${styles.anchorSection}`}
+          style={{ ['--app-accent' as string]: app.accent }}
+        >
+          <div className="container">
+            <span className="eyebrow">How it compares</span>
+            <h2 className="section-title">
+              <a href="#compare" className={styles.anchorLink}>
+                {app.name} vs the alternatives
+              </a>
+            </h2>
+            <ComparisonTable
+              comparison={app.comparison}
+              caption={`Feature comparison of ${app.name} against other readers`}
+            />
+          </div>
+        </section>
+      )}
+
+      {/* FAQ */}
+      {app.faqs && (
+        <section
+          id="faq"
+          className={`section ${styles.anchorSection}`}
+          style={{ ['--app-accent' as string]: app.accent }}
+        >
+          <div className="container">
+            <span className="eyebrow">Questions</span>
+            <h2 className="section-title">
+              <a href="#faq" className={styles.anchorLink}>
+                Frequently asked
+              </a>
+            </h2>
+            <Faq items={app.faqs} />
+            <p className={styles.faqFoot}>
+              Still stuck? Email{' '}
+              <a href={`mailto:${company.email}`}>{company.email}</a> and we
+              will help.
+            </p>
+          </div>
+        </section>
+      )}
+
       {/* Download CTA */}
       <section id="download" className={`section ${styles.anchorSection}`}>
         <div className="container">
@@ -282,11 +350,26 @@ export default async function AppPage({
               </h2>
               <p className={styles.ctaText}>
                 {group === 'Mobile'
-                  ? 'Available for Android. Store listings are on the way — grab the latest build below.'
+                  ? playLink
+                    ? 'Available for Android on Google Play — scan the code or tap the badge.'
+                    : 'Available for Android. Store listings are on the way — grab the latest build below.'
                   : 'Available for macOS and Windows. Download the latest release below.'}
               </p>
+              {app.pricing && (
+                <p className={styles.ctaPricing}>{app.pricing.detail}</p>
+              )}
             </div>
-            <DownloadButtons downloads={app.downloads} />
+            <div className={styles.ctaActions}>
+              <DownloadButtons downloads={app.downloads} />
+              {playLink && (
+                <QrDownload
+                  slug={app.slug}
+                  name={app.name}
+                  href={playLink.href}
+                  variant="cta"
+                />
+              )}
+            </div>
           </div>
         </div>
       </section>

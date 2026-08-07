@@ -1,0 +1,55 @@
+.qr {
+  display: none;
+}
+
+/* Shown only where the hero is two-column and a QR code is actually useful —
+   scanning a code on the phone you are already holding is not. */
+@media (min-width: 900px) {
+  .qr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    /* Matches the 120px app icon directly above it. */
+    width: 120px;
+    padding: 0.5rem 0.5rem 0.45rem;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .qr:hover {
+    transform: translateY(-2px);
+    border-color: var(--green-300);
+  }
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+
+.caption {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Larger variant used in the download call to action, where there is
+   more room than beside the app icon. */
+@media (min-width: 900px) {
+  .qr.cta {
+    width: 148px;
+    padding: 0.65rem 0.65rem 0.55rem;
+  }
+
+  .qr.cta .caption {
+    font-size: 0.62rem;
+  }
+}

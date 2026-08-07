@@ -27,6 +27,51 @@ export interface PrivacyDataPoint {
   description: string;
 }
 
+/** How an app is paid for. Deliberately price-free so it needs no upkeep. */
+export interface AppPricing {
+  /** Short badge text, e.g. "One-time purchase · No ads · No subscription". */
+  label: string;
+  /** One or two sentences expanding on the badge, shown in the download CTA. */
+  detail: string;
+  /** Whether the app costs nothing. Drives the structured-data offer. */
+  free: boolean;
+}
+
+export type ComparisonValue = 'yes' | 'partial' | 'no' | 'unknown';
+
+export interface ComparisonCell {
+  value: ComparisonValue;
+  /** Short qualifier shown beneath the mark, e.g. "Pro only". */
+  note?: string;
+}
+
+export interface ComparisonRow {
+  feature: string;
+  /** One cell per column, in the same order as `columns`. */
+  cells: ComparisonCell[];
+}
+
+export interface ComparisonColumn {
+  name: string;
+  /** Primary source for this app's claims, linked from the column header. */
+  href?: string;
+  /** Marks the column for this app, which is highlighted. */
+  self?: boolean;
+}
+
+export interface Comparison {
+  lead: string;
+  columns: ComparisonColumn[];
+  rows: ComparisonRow[];
+  /** Sourcing / accuracy note rendered beneath the table. */
+  note: string;
+}
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
 export interface AppPrivacy {
   /** One-line summary of the app's data posture. */
   summary: string;
@@ -55,6 +100,8 @@ export interface App {
   platforms: Platform[];
   /** Primary call-to-action grouping shown on cards and detail pages. */
   downloads: DownloadLink[];
+  /** Explicit pricing model. Stated without prices, so it never goes stale. */
+  pricing?: AppPricing;
   /** Public source repository. Omit for closed-source apps. */
   repository?: string;
   /** A few emphasised selling points, shown prominently above the full feature list. */
@@ -70,6 +117,10 @@ export interface App {
   accent: string;
   /** Slug of a sibling app promoted in a banner at the foot of this app's page. */
   crossPromo?: string;
+  /** Optional feature comparison against the main alternatives. */
+  comparison?: Comparison;
+  /** Frequently asked questions, also emitted as FAQPage structured data. */
+  faqs?: FaqItem[];
   /** App-specific privacy policy, linkable from app stores. */
   privacy: AppPrivacy;
 }
@@ -200,11 +251,11 @@ export const apps: App[] = [
   {
     slug: 'opdsy',
     name: 'OPDSy',
-    tagline: 'Every book you own, in one reader.',
+    tagline: 'Your files and your servers, one library.',
     summary:
-      'A fast, private comic, manga and ebook reader for the files on your device and your self-hosted OPDS servers — together in one unified library.',
+      'One library for the books on your device and on your self-hosted OPDS servers — most readers make you choose one or the other. Private, fast and ad-free.',
     description:
-      'OPDSy is a fast, private comic, manga and ebook reader that works with your own on-device files, your self-hosted OPDS servers, or both at once.\n\nAdd any folder on your device as a local library and read straight away — no server required. Or open a file from your file manager or any share sheet and start reading instantly. When you do self-host, connect your OPDS servers — Komga, Kavita, Ubooquity, Calibre-Web, BookOrbit and any OPDS 1.2 or 2.0 source — and browse everything together alongside your local files.\n\nRead EPUB, MOBI, AZW3, FB2 and PDF books, CBZ/CBR comics and manga, and Markdown with Mermaid.js diagrams; highlight passages and bookmark pages; listen to any book with built-in text-to-speech; and download titles for fully offline reading — with no account, no ads and no tracking of any kind.',
+      'Most readers make you choose: local files or a self-hosted server. OPDSy merges both into a single unified library — the folders on your device sitting alongside Komga, Kavita, Ubooquity, Calibre-Web, BookOrbit and any OPDS 1.2 or 2.0 source, each tagged with its own colour.\n\nThat means you can start with nothing but a folder of files — add it as a local library, or open a book straight from your file manager or share sheet — and add servers later, or never. Continue Reading, favourites and search work across everything at once, whichever source a book came from.\n\nRead EPUB, MOBI, AZW3, FB2 and PDF books, CBZ/CBR comics and manga, and Markdown with Mermaid.js diagrams; highlight passages and bookmark pages; listen to any book with built-in text-to-speech; and download titles for fully offline reading — with no account, no ads and no tracking of any kind.',
     category: 'Books & Reference',
     icon: '/apps/opdsy.png',
     featureGraphic: '/apps/opdsy-feature.png',
@@ -218,6 +269,12 @@ export const apps: App[] = [
         platform: 'android',
       },
     ],
+    pricing: {
+      label: 'One-time purchase · No ads · No subscription',
+      detail:
+        'Buy OPDSy once on Google Play and it is yours — no subscription, no in-app purchases, no ads and no pro tier. Every feature, sync included, is there from the first launch.',
+      free: false,
+    },
     techStack: ['Expo SDK 56', 'React Native', 'TypeScript', 'TanStack Query'],
     screenshots: [
       { src: '/screenshots/opdsy/home.jpg?v=5', alt: 'OPDSy home screen with continue reading and favourites' },
@@ -268,19 +325,19 @@ export const apps: App[] = [
     ],
     highlights: [
       {
+        title: 'One library, local and self-hosted',
+        description:
+          'Most readers make you choose. OPDSy merges on-device folders with Komga, Kavita, Ubooquity, Calibre-Web, BookOrbit and any OPDS 1.2 / 2.0 source into a single unified home.',
+      },
+      {
         title: 'Private by design, zero tracking',
         description:
           'No account, no ads, no analytics and no tracking of any kind. Your reading is nobody’s business but yours.',
       },
       {
-        title: 'Your own files, no server needed',
+        title: 'One purchase, nothing held back',
         description:
-          'Add any folder on your device as a local library, or open a file straight from your file manager or share sheet. OPDS is optional.',
-      },
-      {
-        title: 'One library, local and self-hosted',
-        description:
-          'On-device folders plus Komga, Kavita, Ubooquity, Calibre-Web, BookOrbit and any OPDS 1.2 / 2.0 source, merged into a single unified home.',
+          'Buy it once. No ads, no subscription, no in-app purchases and no pro tier — every feature, sync included, is there from the first launch.',
       },
       {
         title: 'Comics, books and audio',
@@ -363,6 +420,218 @@ export const apps: App[] = [
         title: 'Private cross-device sync',
         description:
           'Optionally sync your library, favourites, reading progress, highlights and bookmarks through your own Google Drive — end-to-end encrypted with a passphrase-derived key, readable only on your devices.',
+      },
+    ],
+    comparison: {
+      lead:
+        'Android has plenty of good readers. Most of them, though, are built either for the files on your device or for a server — so a self-hoster ends up running two apps. Every cell below is taken from the app’s own website, store listing, documentation or source code; where we could not confirm something from one of those, it is marked unconfirmed rather than guessed.',
+      columns: [
+        {
+          name: 'OPDSy',
+          self: true,
+          href: 'https://play.google.com/store/apps/details?id=com.opdsy',
+        },
+        { name: 'Moon+ Reader', href: 'https://www.moondownload.com/' },
+        { name: 'KOReader', href: 'https://github.com/koreader/koreader' },
+        { name: 'Librera', href: 'https://librera.mobi/' },
+        { name: 'Mihon', href: 'https://mihon.app/' },
+        { name: 'ReadEra', href: 'https://readera.org/' },
+      ],
+      rows: [
+        {
+          feature: 'Local files and OPDS servers in one merged library',
+          cells: [
+            { value: 'yes' },
+            { value: 'no', note: 'Servers live in a separate Net Library' },
+            { value: 'no', note: 'OPDS is a separate download browser' },
+            { value: 'unknown', note: 'Only search and download documented' },
+            { value: 'no', note: 'No OPDS support' },
+            { value: 'no', note: 'No server support in the feature list' },
+          ],
+        },
+        {
+          feature: 'Connects to OPDS catalogues',
+          cells: [
+            { value: 'yes', note: 'OPDS 1.2 and 2.0' },
+            { value: 'yes', note: 'Version not stated by the vendor' },
+            { value: 'yes', note: 'Version not stated by the project' },
+            { value: 'yes', note: 'Version not stated by the vendor' },
+            { value: 'no', note: 'Uses its own extension sources' },
+            { value: 'unknown', note: 'Not mentioned in the feature list' },
+          ],
+        },
+        {
+          feature: 'Page-by-page comic streaming (OPDS-PSE)',
+          cells: [
+            { value: 'yes' },
+            { value: 'unknown', note: 'Not documented' },
+            { value: 'yes', note: 'Page streaming in the OPDS plugin' },
+            { value: 'unknown', note: 'Not documented' },
+            { value: 'no', note: 'No OPDS support' },
+            { value: 'unknown', note: 'Not documented' },
+          ],
+        },
+        {
+          feature: 'Reads both ebooks and comic archives',
+          cells: [
+            { value: 'yes', note: 'EPUB, PDF, CBZ, CBR' },
+            { value: 'yes', note: 'EPUB, PDF, CBZ, CBR' },
+            { value: 'yes', note: 'CBZ and CBT listed; CBR not listed' },
+            { value: 'yes', note: 'EPUB, PDF, CBZ, CBR' },
+            { value: 'no', note: 'Comics and manga only' },
+            { value: 'yes', note: 'EPUB, PDF, CBZ, CBR' },
+          ],
+        },
+        {
+          feature: 'Text-to-speech',
+          cells: [
+            { value: 'yes' },
+            { value: 'partial', note: 'Pro version only' },
+            { value: 'unknown', note: 'Not in the project feature list' },
+            { value: 'yes' },
+            { value: 'no', note: 'Comics and manga only' },
+            { value: 'partial', note: 'Premium version only' },
+          ],
+        },
+        {
+          feature: 'Cross-device sync, end-to-end encrypted',
+          cells: [
+            { value: 'yes', note: 'Your own Google Drive, encrypted' },
+            { value: 'partial', note: 'Drive, Dropbox, WebDAV; no encryption claimed' },
+            { value: 'partial', note: 'Progress sync; no encryption claimed' },
+            { value: 'partial', note: 'Drive sync in PRO; no encryption claimed' },
+            { value: 'partial', note: 'Manual backup files only' },
+            { value: 'partial', note: 'Drive sync in Premium; no encryption claimed' },
+          ],
+        },
+        {
+          feature: 'No ads in any version',
+          cells: [
+            { value: 'yes' },
+            { value: 'no', note: 'Ads in the free version' },
+            { value: 'yes', note: 'No ad code in the source' },
+            { value: 'no', note: 'Free version is ad-supported' },
+            { value: 'yes', note: 'No ad code in the source' },
+            { value: 'unknown', note: 'Not stated by the vendor' },
+          ],
+        },
+        {
+          feature: 'Every feature included, no locked tier',
+          cells: [
+            { value: 'yes', note: 'One-time purchase' },
+            { value: 'partial', note: 'Pro unlock' },
+            { value: 'yes', note: 'Free and open source' },
+            { value: 'partial', note: 'PRO unlock' },
+            { value: 'yes', note: 'Free and open source' },
+            { value: 'partial', note: 'Premium unlock' },
+          ],
+        },
+        {
+          feature: 'No analytics or tracking',
+          cells: [
+            { value: 'yes' },
+            {
+              value: 'partial',
+              note: 'Privacy policy lists Google Play Services and AdMob',
+            },
+            { value: 'yes', note: 'No analytics code in the source' },
+            {
+              value: 'no',
+              note: 'Play data safety: name, email and user IDs shared for analytics or advertising',
+            },
+            { value: 'yes', note: 'No analytics code in the source' },
+            {
+              value: 'partial',
+              note: 'Anonymous usage and crash data, not shared, can be turned off',
+            },
+          ],
+        },
+        {
+          feature: 'Installable from Google Play',
+          cells: [
+            { value: 'yes' },
+            { value: 'yes' },
+            { value: 'no', note: 'F-Droid or APK' },
+            { value: 'yes' },
+            { value: 'no', note: 'APK only' },
+            { value: 'yes' },
+          ],
+        },
+        {
+          feature: 'Released in the last twelve months',
+          cells: [
+            { value: 'yes' },
+            { value: 'yes' },
+            { value: 'yes' },
+            { value: 'no', note: 'Project README says development is frozen' },
+            { value: 'yes' },
+            { value: 'yes', note: 'Play listing updated May 2026' },
+          ],
+        },
+      ],
+      note:
+        'Compiled in August 2026 from each app’s own website, Google Play listing, documentation or public source code — column headings link to the source we used. “Unconfirmed” means we could not verify it from one of those sources; it does not mean the feature is missing. Paid tiers change what an app can do, so rows are judged on the version named in the column. These are all good apps built by people who care; if anything here is out of date, tell us and we will correct it.',
+    },
+    faqs: [
+      {
+        question: 'Do I need a server to use OPDSy?',
+        answer:
+          'No. Add any folder on your device as a local library and read straight away, or open a file from your file manager or a share sheet. Servers are entirely optional — plenty of people use OPDSy purely as a local reader.',
+      },
+      {
+        question: 'Which servers does OPDSy work with?',
+        answer:
+          'Komga, Kavita, Ubooquity, Calibre-Web and BookOrbit are all supported, along with any other server that speaks OPDS 1.2 or OPDS 2.0. Comic page streaming uses OPDS-PSE where your server offers it.',
+      },
+      {
+        question: 'Can I use local files and servers at the same time?',
+        answer:
+          'Yes — that is the point of OPDSy. On-device folders and every connected server are merged into one library, each source tagged with its own colour badge, and Continue Reading, favourites and search all work across the lot.',
+      },
+      {
+        question: 'My server is on my home network — will it work away from home?',
+        answer:
+          'OPDSy connects to whatever address you give it, so it works anywhere that address is reachable. At home a local address such as http://192.168.1.10:8080 is fine. Away from home you will need your server reachable from the internet — most people use a VPN such as Tailscale or WireGuard, or a reverse proxy with HTTPS. OPDSy does not proxy anything through us.',
+      },
+      {
+        question: 'Does OPDSy support HTTPS, self-signed certificates and reverse proxies?',
+        answer:
+          'HTTPS and standard reverse-proxy setups work normally, including servers hosted on a subpath. Enter the full base URL of your OPDS feed, including any port or path. Certificates must be trusted by Android, so if you use a self-signed or private CA certificate, install it in your device’s user certificate store first.',
+      },
+      {
+        question: 'How does OPDSy authenticate to my server?',
+        answer:
+          'HTTP Basic authentication, as used by Komga, Kavita, Ubooquity and Calibre-Web. Your server address, username and password are stored in the Android Keystore, kept out of persisted app state, and never sent to Binary Meadow.',
+      },
+      {
+        question: 'A server is down or slow — does the whole library break?',
+        answer:
+          'No. Every source loads independently, so one offline, slow or misconfigured server never takes the library down with it. Your local files, favourites and recent items stay visible while it is unavailable.',
+      },
+      {
+        question: 'Which files can I read, and where do local libraries come from?',
+        answer:
+          'EPUB, MOBI, AZW3, FB2, PDF and Markdown (including Mermaid.js diagrams) for books, and CBZ and CBR for comics and manga. A local library is any folder you pick on internal storage or an SD card, and OPDSy reads only the folders you choose.',
+      },
+      {
+        question: 'Can I read offline?',
+        answer:
+          'Yes. Files in a local library are already offline, and anything on a server can be downloaded to your device — interrupted downloads resume by themselves.',
+      },
+      {
+        question: 'How much does OPDSy cost?',
+        answer:
+          'OPDSy is a one-time purchase on Google Play — buy it once and it is yours on every Android device signed in to that Google account. There is no subscription, there are no in-app purchases or ads, and every feature, including encrypted sync, is included. The Play listing shows the current price in your own currency.',
+      },
+      {
+        question: 'How does sync work, and can Binary Meadow see my library?',
+        answer:
+          'Sync is optional. If you turn it on, your library, favourites, reading progress, highlights and bookmarks are encrypted on your device with a passphrase-derived key and stored in a hidden, app-private folder of your own Google Drive. Only a device holding your passphrase can read it — neither Binary Meadow nor Google can.',
+      },
+      {
+        question: 'Does OPDSy work on e-ink devices and tablets?',
+        answer:
+          'Yes. There are independent toggles for a high-contrast black-on-white theme and for switching animations off, to avoid ghosting on slow-refresh screens such as Onyx Boox, and tablets get two-page spreads for both books and comics.',
       },
     ],
     privacy: {

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { apps } from '@/data/apps';
 import { company } from '@/lib/site';
 import AppCard from '@/components/AppCard';
-import { JsonLd, organizationSchema, webSiteSchema } from '@/lib/jsonld';
+import { JsonLd, organizationSchema, webSiteSchema, appsItemListSchema } from '@/lib/jsonld';
 import styles from './page.module.css';
 
 export default function HomePage() {
@@ -10,6 +10,7 @@ export default function HomePage() {
     <>
       <JsonLd data={organizationSchema()} />
       <JsonLd data={webSiteSchema()} />
+      <JsonLd data={appsItemListSchema(apps)} />
       {/* Hero */}
       <section className={styles.hero}>
         <div className={`container ${styles.heroInner}`}>

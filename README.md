@@ -51,7 +51,6 @@ public/
 ```
 
 ## Development
-
 ```bash
 npm install
 npm run dev      # http://localhost:3000
@@ -64,6 +63,29 @@ Serve the build locally:
 npx serve out
 ```
 
+### QR codes
+
+Each app with a Google Play listing has a "Scan to install" QR code, shown in
+the download CTA on desktop only (`public/qr/<slug>.svg`). The codes are
+generated from the Play URLs in `src/data/apps.ts`, so they cannot drift from
+the links on the page. Regenerate them after changing a store URL:
+
+```bash
+python3 -m venv /tmp/qrvenv
+/tmp/qrvenv/bin/pip install segno
+/tmp/qrvenv/bin/python scripts/generate-qr.py
+```
+
+### App page content blocks
+
+Optional fields on each app in `src/data/apps.ts` drive extra sections:
+
+| Field | Renders |
+| --- | --- |
+| `pricing` | A pricing-model badge in the hero (e.g. "One-time purchase · No ads · No subscription") and the expanded wording in the download CTA. Deliberately states the *model*, never a price, so it needs no upkeep across currencies — and `free` drives the structured-data offer. |
+| `comparison` | The "vs the alternatives" feature table, plus a sourcing note. |
+| `faqs` | The FAQ accordion, also emitted as `FAQPage` structured data. |
+
 ## SEO
 
 The site follows current SEO best practices:
@@ -71,8 +93,10 @@ The site follows current SEO best practices:
 - Per-page **title**, **description** and **canonical** URLs.
 - **Open Graph** + **Twitter Card** tags with 1200×630 share images
   (`public/og/`, regenerated via `python3 scripts/generate-og.py`).
-- **JSON-LD** structured data — `Organization` and `WebSite` on the home page,
-  `SoftwareApplication` and `BreadcrumbList` on each app page.
+- **JSON-LD** structured data — `Organization`, `WebSite` and an `ItemList` of
+  the apps on the home page; `SoftwareApplication` (with `offers`,
+  `isAccessibleForFree`, `featureList` and screenshots), `BreadcrumbList` and
+  `FAQPage` on each app page.
 - Auto-generated **`sitemap.xml`**, **`robots.txt`** and **web manifest**
   (`src/app/sitemap.ts`, `robots.ts`, `manifest.ts`).
 - `metadataBase` and all absolute URLs derive from `siteConfig.url`

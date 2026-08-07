@@ -25,7 +25,7 @@ export function organizationSchema() {
     logo: `${company.url}/apps/binary-meadow-mark.png`,
     email: company.email,
     description: company.description,
-    sameAs: [company.twitterUrl],
+    sameAs: [company.twitterUrl, 'https://github.com/faesel'],
     foundingLocation: company.registeredOffice,
     founder: {
       '@type': 'Person',
@@ -62,25 +62,84 @@ const OS_MAP: Record<string, string> = {
 
 export function softwareApplicationSchema(app: App) {
   const isMobile = app.platforms.some((p) => p === 'android' || p === 'ios');
+  const playListing = app.downloads.find((d) =>
+    d.href.includes('play.google.com'),
+  );
   return {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
     name: app.name,
+    alternateName: app.tagline,
     description: app.summary,
     url: `${company.url}/apps/${app.slug}/`,
     image: `${company.url}${app.icon}`,
+    screenshot: app.screenshots
+      .slice(0, 6)
+      .map((s) => `${company.url}${s.src.split('?')[0]}`),
     applicationCategory: isMobile ? 'MobileApplication' : 'DesktopApplication',
+    applicationSubCategory: app.category,
     operatingSystem: app.platforms.map((p) => OS_MAP[p]).join(', '),
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'GBP',
-    },
+    featureList: app.features.map((f) => f.title),
+    ...(playListing ? { downloadUrl: playListing.href } : {}),
+    ...(app.repository ? { codeRepository: app.repository } : {}),
+    ...(app.pricing
+      ? app.pricing.free
+        ? {
+            isAccessibleForFree: true,
+            offers: {
+              '@type': 'Offer',
+              price: '0',
+              priceCurrency: 'GBP',
+              availability: 'https://schema.org/InStock',
+              ...(playListing ? { url: playListing.href } : {}),
+            },
+          }
+        : {
+            // Paid app: the store listing is the single source of truth for
+            // price and currency, so no price is asserted here.
+            isAccessibleForFree: false,
+            ...(playListing
+              ? {
+                  offers: {
+                    '@type': 'Offer',
+                    availability: 'https://schema.org/InStock',
+                    url: playListing.href,
+                  },
+                }
+              : {}),
+          }
+      : {
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'GBP',
+          },
+        }),
     publisher: {
       '@type': 'Organization',
       name: company.name,
       url: company.url,
     },
+    author: {
+      '@type': 'Organization',
+      name: company.name,
+      url: company.url,
+    },
+  };
+}
+
+export function faqPageSchema(items: { question: string; answer: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
   };
 }
 
@@ -95,6 +154,21 @@ export function breadcrumbSchema(
       position: i + 1,
       name: item.name,
       item: item.url,
+    })),
+  };
+}
+
+/** Lists the studio's apps on the home page so search engines see the catalogue. */
+export function appsItemListSchema(list: App[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `Apps by ${company.name}`,
+    itemListElement: list.map((app, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: app.name,
+      url: `${company.url}/apps/${app.slug}/`,
     })),
   };
 }
