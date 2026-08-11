@@ -255,7 +255,7 @@ export const apps: App[] = [
     summary:
       'One library for the books on your device and on your self-hosted OPDS servers — most readers make you choose one or the other. Private, fast and ad-free.',
     description:
-      'Most readers make you choose: local files or a self-hosted server. OPDSy merges both into a single unified library — the folders on your device sitting alongside Komga, Kavita, Ubooquity, Calibre-Web, BookOrbit and any OPDS 1.2 or 2.0 source, each tagged with its own colour.\n\nThat means you can start with nothing but a folder of files — add it as a local library, or open a book straight from your file manager or share sheet — and add servers later, or never. Continue Reading, favourites and search work across everything at once, whichever source a book came from.\n\nRead EPUB, MOBI, AZW3, FB2 and PDF books, CBZ/CBR comics and manga, and Markdown with Mermaid.js diagrams; highlight passages and bookmark pages; listen to any book with built-in text-to-speech; and download titles for fully offline reading — with no account, no ads and no tracking of any kind.',
+      'Most readers make you choose: local files or a self-hosted server. OPDSy merges both into a single unified library — the folders on your device sitting alongside Komga, Kavita, Ubooquity, Calibre-Web, BookOrbit and any OPDS 1.2 or 2.0 source, each tagged with its own colour.\n\nThat means you can start with nothing but a folder of files — add it as a local library, or open a book straight from your file manager or share sheet — and add servers later, or never. Continue Reading, favourites and search work across everything at once, whichever source a book came from.\n\nRead EPUB, MOBI, AZW3, FB2 and PDF books, CBZ/CBR comics and manga, and Markdown with Mermaid.js diagrams; jump straight to any page or chapter; look a word up in an offline dictionary; highlight passages and bookmark pages; listen to any book with built-in text-to-speech; and download titles for fully offline reading — with no account, no ads and no tracking of any kind.',
     category: 'Books & Reference',
     icon: '/apps/opdsy.png',
     featureGraphic: '/apps/opdsy-feature.png?v=2',
@@ -345,6 +345,11 @@ export const apps: App[] = [
           'Read comics and manga, ebooks in EPUB, MOBI, AZW3 and FB2, PDFs and Markdown — or have any book read aloud with text-to-speech.',
       },
       {
+        title: 'An offline dictionary',
+        description:
+          'Tap Define on any word for its meaning, examples and synonyms without leaving the page. Dictionaries are downloaded on demand, and every lookup happens on your device.',
+      },
+      {
         title: 'The successor to Kuboo',
         description:
           'A resilient, multi-source reader rebuilt from the ground up for speed, reliability and privacy — and actively maintained.',
@@ -382,6 +387,16 @@ export const apps: App[] = [
           'Read PDFs in-app with paged or vertical scrolling, fit-to-screen or fit-to-width, single- or two-page layouts, and pinch or double-tap zoom. Markdown renders cleanly, including Mermaid.js diagrams.',
       },
       {
+        title: 'Jump straight to a page',
+        description:
+          'Drag the slider in the controls bar, or tap the page counter to type an exact page. Comics and PDFs also get a filmstrip of page thumbnails to flick through — whether the comic is streaming from a server or sitting on your device. Books list every chapter alongside the page box, and use the printed edition’s own page numbers where the file provides them, saying so plainly when they are only estimates. After a long jump, one tap takes you back.',
+      },
+      {
+        title: 'Look up a word, offline',
+        description:
+          'Select a word in an ebook, or long-press one in a PDF, and tap Define for its senses, part of speech, examples and synonyms — without losing your place. Inflected forms are understood, so “running” finds “run”. Dictionaries are downloaded from Settings rather than bundled, each verified against a fingerprint built into the app, and words you look up collect in a per-book list you can switch off.',
+      },
+      {
         title: 'Listen with text-to-speech',
         description:
           'Have any ebook read aloud with your device’s text-to-speech engine — flowing sentence by sentence and continuing across chapters, with adjustable speed, pitch and choice of offline or online voices.',
@@ -390,6 +405,11 @@ export const apps: App[] = [
         title: 'A proper reading experience',
         description:
           'Continue Reading remembers your place across every source, local or remote. Mark books and folders as favourites for one-tap access, track progress, and tune the ebook reader with adjustable fonts, line spacing and light, sepia or OLED-friendly dark themes.',
+      },
+      {
+        title: 'Know what you have read',
+        description:
+          'Mark any book or comic read or unread from its long-press menu, including something you only part-read. Folders show a READ badge once everything inside them is finished, nested folders included — worked out from what the folder held last time you browsed it, so it costs no extra requests.',
       },
       {
         title: 'Highlights & bookmarks',
@@ -420,6 +440,11 @@ export const apps: App[] = [
         title: 'Private cross-device sync',
         description:
           'Optionally sync your library, favourites, reading progress, highlights and bookmarks through your own Google Drive — end-to-end encrypted with a passphrase-derived key, readable only on your devices.',
+      },
+      {
+        title: 'Progress back to your server',
+        description:
+          'Separately, each remote library has a switch — off unless you turn it on — that publishes the page you reach as you read, so Komga’s own web UI and anything else signed in to it show the same place. The library screen reports whether it is actually working. Komga is the only OPDS server that accepts this today.',
       },
     ],
     comparison: {
@@ -627,6 +652,16 @@ export const apps: App[] = [
         question: 'How does sync work, and can Binary Meadow see my library?',
         answer:
           'Sync is optional. If you turn it on, your library, favourites, reading progress, highlights and bookmarks are encrypted on your device with a passphrase-derived key and stored in a hidden, app-private folder of your own Google Drive. Only a device holding your passphrase can read it — neither Binary Meadow nor Google can.',
+      },
+      {
+        question: 'Does the dictionary send my lookups anywhere?',
+        answer:
+          'No. Dictionaries are downloaded once from Settings and then searched entirely on your device, so a word you look up never leaves your phone — and lookups keep working with no connection at all. Each dictionary file is checked against a fingerprint built into the app before it is installed, so a modified or substituted file is refused.',
+      },
+      {
+        question: 'What is the difference between syncing to Google Drive and syncing to my server?',
+        answer:
+          'They are separate, and you can use either, both or neither. Google Drive sync carries your servers, favourites, reading progress and annotations between your own devices, end-to-end encrypted. Server-side sync instead publishes the page you reach back to the library itself, so its web UI and any other client show the same place — useful if you also read in a browser. Komga is the only OPDS server that accepts this today, and it is off unless you turn it on per library.',
       },
       {
         question: 'Does OPDSy work on e-ink devices and tablets?',
