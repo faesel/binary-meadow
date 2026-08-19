@@ -101,8 +101,18 @@ export interface ServerStructure {
   caveat?: string;
 }
 
+export interface ServerTerm {
+  term: string;
+  definition: string;
+  example: string;
+}
+
 export interface ServerStructures {
   lead: string;
+  /** Vocabulary every server shares, defined once above the accordions. */
+  terms?: ServerTerm[];
+  /** Folder layout illustrating how those terms map to disk. */
+  termsExample?: { caption: string; lines: string[] };
   servers: ServerStructure[];
   /** Sourcing / accuracy note rendered beneath the accordions. */
   note: string;
@@ -643,6 +653,50 @@ export const apps: App[] = [
     serverStructures: {
       lead:
         'OPDSy shows you exactly what your server publishes — it does not invent a structure of its own. That means the shape of your library depends on which server you run, and the servers differ more than you might expect. Here is what each one puts on the Library screen, and where each entry leads.',
+      termsExample: {
+        caption:
+          'Every server builds its catalogue from your folders. One folder becomes a series; one file inside it becomes a book.',
+        lines: [
+          '/comics                 the library root you give the server',
+          '  Saga/                 a series — one folder',
+          '    Saga #01.cbz        a book — one file',
+          '    Saga #02.cbz',
+          '  Monstress/            another series',
+          '    Monstress #01.cbz',
+        ],
+      },
+      terms: [
+        {
+          term: 'Library',
+          definition:
+            'A root folder you hand the server. Most people run one or two, and each has its own root that cannot overlap another.',
+          example: 'Comics and Books, kept apart.',
+        },
+        {
+          term: 'Series',
+          definition:
+            'One folder of related files. This is what you open to find something to read.',
+          example: 'The Saga folder.',
+        },
+        {
+          term: 'Book',
+          definition:
+            'One file. Servers use the same word for a single comic issue, a collected volume and a novel.',
+          example: 'Saga #01.cbz.',
+        },
+        {
+          term: 'Collection',
+          definition:
+            'A group of series you make yourself in the server’s web interface — never built from your folders. It can span libraries.',
+          example: 'A Batman collection holding every Batman series.',
+        },
+        {
+          term: 'Read list',
+          definition:
+            'A group of books you make yourself, in a running order, and it can cut across series. Think of it as a playlist for books.',
+          example: 'Every book Wolverine turns up in.',
+        },
+      ],
       servers: [
         {
           name: 'Komga',
@@ -664,6 +718,7 @@ export const apps: App[] = [
               name: 'All libraries',
               shape: 'menu',
               note: 'one per library you configured',
+              wayIn: true,
               path: ['A library', 'Its series', 'Their books'],
             },
             {

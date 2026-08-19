@@ -54,6 +54,29 @@ export default function ServerStructures({
     <>
       <p className={styles.lead}>{data.lead}</p>
 
+      {data.termsExample && (
+        <div className={styles.terms}>
+          <p className={styles.termsCaption}>{data.termsExample.caption}</p>
+          <pre className={styles.tree}>
+            <code>{data.termsExample.lines.join('\n')}</code>
+          </pre>
+        </div>
+      )}
+
+      {data.terms && (
+        <dl className={styles.glossary}>
+          {data.terms.map((t) => (
+            <div key={t.term} className={styles.term}>
+              <dt className={styles.termName}>{t.term}</dt>
+              <dd className={styles.termBody}>
+                {t.definition}{' '}
+                <span className={styles.termExample}>{t.example}</span>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      )}
+
       <ul className={styles.legend}>
         {SHAPE_ORDER.map((shape) => (
           <li key={shape}>
@@ -66,7 +89,10 @@ export default function ServerStructures({
       </ul>
 
       <div className={styles.list} role="group" aria-label={caption}>
-        {data.servers.map((server, i) => (
+        {data.servers.map((server, i) => {
+          const wayInCount = server.tiles.filter((t) => t.wayIn).length;
+          const wayInLabel = wayInCount > 1 ? 'A way in' : 'The way in';
+          return (
           <details key={server.name} className={styles.item} open={i === 0}>
             <summary className={styles.head}>
               <span className={styles.headText}>
@@ -91,7 +117,7 @@ export default function ServerStructures({
                         <span className={styles.tileNote}>{tile.note}</span>
                       )}
                       {tile.wayIn && (
-                        <span className={styles.wayIn}>The way in</span>
+                        <span className={styles.wayIn}>{wayInLabel}</span>
                       )}
                     </span>
 
@@ -130,7 +156,8 @@ export default function ServerStructures({
               )}
             </div>
           </details>
-        ))}
+          );
+        })}
       </div>
 
       <p className={styles.footnote}>{data.note}</p>
