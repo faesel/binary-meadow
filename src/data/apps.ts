@@ -67,6 +67,47 @@ export interface Comparison {
   note: string;
 }
 
+/**
+ * What sits behind a single entry in a server's top-level OPDS feed. Describes
+ * the tile's shape rather than how many items it holds, because counts depend
+ * entirely on the reader's own library.
+ */
+export type ServerTileShape =
+  | 'menu'
+  | 'list'
+  | 'activity'
+  | 'user'
+  | 'metadata';
+
+export interface ServerTile {
+  name: string;
+  shape: ServerTileShape;
+  /** Short qualifier shown beside the tile name. */
+  note?: string;
+  /** Marks the tile that is the useful route into the library. */
+  wayIn?: boolean;
+  /** Levels you pass through from this tile down to a readable file. */
+  path?: string[];
+}
+
+export interface ServerStructure {
+  name: string;
+  href?: string;
+  /** One-line characterisation of how this server models a library. */
+  summary: string;
+  /** Top-level entries, in the order the server publishes them. */
+  tiles: ServerTile[];
+  /** Anything surprising about this server, shown beneath its tiles. */
+  caveat?: string;
+}
+
+export interface ServerStructures {
+  lead: string;
+  servers: ServerStructure[];
+  /** Sourcing / accuracy note rendered beneath the accordions. */
+  note: string;
+}
+
 export interface FaqItem {
   question: string;
   answer: string;
@@ -119,6 +160,8 @@ export interface App {
   crossPromo?: string;
   /** Optional feature comparison against the main alternatives. */
   comparison?: Comparison;
+  /** Optional walk-through of what each supported server publishes. */
+  serverStructures?: ServerStructures;
   /** Frequently asked questions, also emitted as FAQPage structured data. */
   faqs?: FaqItem[];
   /** App-specific privacy policy, linkable from app stores. */
@@ -596,6 +639,159 @@ export const apps: App[] = [
       ],
       note:
         'Compiled in August 2026 from each app’s own website, Google Play listing, documentation or public source code — column headings link to the source we used. “Unconfirmed” means we could not verify it from one of those sources; it does not mean the feature is missing. Paid tiers change what an app can do, so rows are judged on the version named in the column. These are all good apps built by people who care; if anything here is out of date, tell us and we will correct it.',
+    },
+    serverStructures: {
+      lead:
+        'OPDSy shows you exactly what your server publishes — it does not invent a structure of its own. That means the shape of your library depends on which server you run, and the servers differ more than you might expect. Here is what each one puts on the Library screen, and where each entry leads.',
+      servers: [
+        {
+          name: 'Komga',
+          href: 'https://komga.org/',
+          summary:
+            'Series-first. Komga groups your files into series, then books within them.',
+          tiles: [
+            { name: 'Keep Reading', shape: 'activity' },
+            { name: 'On Deck', shape: 'activity' },
+            {
+              name: 'All series',
+              shape: 'list',
+              wayIn: true,
+              path: ['A series', 'Its books'],
+            },
+            { name: 'Latest series', shape: 'list' },
+            { name: 'Latest books', shape: 'list' },
+            {
+              name: 'All libraries',
+              shape: 'menu',
+              note: 'one per library you configured',
+              path: ['A library', 'Its series', 'Their books'],
+            },
+            {
+              name: 'All collections',
+              shape: 'user',
+              path: ['A collection', 'Its series', 'Their books'],
+            },
+            { name: 'All read lists', shape: 'user' },
+            { name: 'All publishers', shape: 'metadata' },
+          ],
+          caveat:
+            'Collections are the one place any of these servers gives you a genuine third level. If you want a Series → Volume → Issue structure on your phone, a Komga collection is the way to get it.',
+        },
+        {
+          name: 'Kavita',
+          href: 'https://www.kavitareader.com/',
+          summary:
+            'Series-first, but it works out series from your file names rather than your folders.',
+          tiles: [
+            { name: 'On Deck', shape: 'activity' },
+            { name: 'Recently Updated', shape: 'list' },
+            { name: 'Recently Added', shape: 'list' },
+            { name: 'Reading Lists', shape: 'user' },
+            { name: 'Want to Read', shape: 'user' },
+            {
+              name: 'All Libraries',
+              shape: 'menu',
+              note: 'one per library you configured',
+              wayIn: true,
+              path: [
+                'A library',
+                'Its series',
+                'Every issue in the series, in one flat list',
+              ],
+            },
+            { name: 'All Collections', shape: 'user' },
+          ],
+          caveat:
+            'If your series has volumes, that level does not survive. Kavita tracks volumes internally, but its OPDS feed hands out every issue in one flat list, with the volume left only as words in each issue’s title. No reader can restore a level the server never sends, so this is the same in every OPDS app, not just OPDSy.',
+        },
+        {
+          name: 'Ubooquity',
+          href: 'https://vaemendis.net/ubooquity/',
+          summary:
+            'Your folders, mirrored exactly. Nothing is inferred and nothing is flattened.',
+          tiles: [
+            {
+              name: 'Comics — by folder',
+              shape: 'menu',
+              wayIn: true,
+              path: ['Your comics folder', 'Your own sub-folders, all the way down'],
+            },
+            { name: 'Comics — latest', shape: 'list' },
+            {
+              name: 'Books — by folder',
+              shape: 'menu',
+              wayIn: true,
+              path: ['Your books folder', 'Your own sub-folders, all the way down'],
+            },
+            { name: 'Books — latest', shape: 'list' },
+          ],
+          caveat:
+            'The only server here with a separate way in for comics and for books, and the only one whose structure is simply the folder tree you already built. However deep you nested it, that is what you get.',
+        },
+        {
+          name: 'Calibre-Web',
+          href: 'https://github.com/janeczku/calibre-web',
+          summary:
+            'Book-first, with a lot of ways to slice the same shelf by metadata.',
+          tiles: [
+            {
+              name: 'Alphabetical Books',
+              shape: 'menu',
+              note: 'one per initial letter',
+              wayIn: true,
+              path: ['A letter', 'The books themselves'],
+            },
+            { name: 'Hot Books', shape: 'activity', note: 'by download count' },
+            { name: 'Top Rated Books', shape: 'metadata' },
+            { name: 'Recently added Books', shape: 'list' },
+            { name: 'Random Books', shape: 'list' },
+            { name: 'Read Books', shape: 'activity' },
+            { name: 'Unread Books', shape: 'list' },
+            { name: 'Authors', shape: 'metadata' },
+            { name: 'Publishers', shape: 'metadata' },
+            { name: 'Categories', shape: 'metadata' },
+            {
+              name: 'Series',
+              shape: 'metadata',
+              path: ['A letter', 'A series', 'Its books'],
+            },
+            { name: 'Languages', shape: 'metadata' },
+            { name: 'Ratings', shape: 'metadata' },
+            { name: 'File formats', shape: 'metadata' },
+            { name: 'Shelves', shape: 'user' },
+          ],
+          caveat:
+            'The lettered route drops you straight onto books with no series level in between. Only the Series menu gives you a series to open.',
+        },
+        {
+          name: 'BookOrbit',
+          href: 'https://bookorbit.org/',
+          summary: 'Book-first. Series is a label on a book rather than a place to visit.',
+          tiles: [
+            { name: 'All Books', shape: 'list', wayIn: true },
+            { name: 'Recent Books', shape: 'list' },
+            { name: 'Random Books', shape: 'list', note: 'reshuffled each time' },
+            {
+              name: 'Libraries',
+              shape: 'menu',
+              note: 'one per library you configured',
+              path: ['A library', 'The books themselves'],
+            },
+            { name: 'Collections', shape: 'user' },
+            { name: 'SmartScopes', shape: 'user' },
+            { name: 'Authors', shape: 'metadata' },
+            {
+              name: 'Series',
+              shape: 'metadata',
+              path: ['A series', 'Its books'],
+            },
+          ],
+          caveat:
+            'Opening a library lists books straight away, with no series level. As with Calibre-Web, the Series menu is the only route that gives you one.',
+        },
+      ],
+      note:
+        'Checked in August 2026 against a locally hosted instance of each server, reading the feed each one actually publishes rather than its documentation. Deliberately no item counts: what a tile holds depends entirely on your own library. An empty entry is normal rather than a fault — reading lists, collections and shelves stay empty until you make one on the server, and the “continue reading” style entries fill up only as you read.',
     },
     faqs: [
       {

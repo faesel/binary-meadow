@@ -13,6 +13,7 @@ import {
 import PlatformBadge, { platformGroup } from '@/components/PlatformBadge';
 import DownloadButtons from '@/components/DownloadButtons';
 import ComparisonTable from '@/components/ComparisonTable';
+import ServerStructures from '@/components/ServerStructures';
 import Faq from '@/components/Faq';
 import QrDownload from '@/components/QrDownload';
 import styles from './app.module.css';
@@ -306,6 +307,28 @@ export default async function AppPage({
             <ComparisonTable
               comparison={app.comparison}
               caption={`Feature comparison of ${app.name} against other readers`}
+            />
+          </div>
+        </section>
+      )}
+
+      {/* What each server publishes */}
+      {app.serverStructures && (
+        <section
+          id="servers"
+          className={`section ${styles.anchorSection}`}
+          style={{ ['--app-accent' as string]: app.accent }}
+        >
+          <div className="container">
+            <span className="eyebrow">What you will see</span>
+            <h2 className="section-title">
+              <a href="#servers" className={styles.anchorLink}>
+                Your library, server by server
+              </a>
+            </h2>
+            <ServerStructures
+              data={app.serverStructures}
+              caption={`What each supported server publishes to ${app.name}`}
             />
           </div>
         </section>
