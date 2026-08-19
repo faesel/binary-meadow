@@ -820,7 +820,7 @@ export const apps: App[] = [
         },
         {
           name: 'BookOrbit',
-          href: 'https://bookorbit.org/',
+          href: 'https://bookorbit.app/',
           summary: 'Book-first. Series is a label on a book rather than a place to visit.',
           tiles: [
             { name: 'All Books', shape: 'list', wayIn: true },
