@@ -830,6 +830,7 @@ export const apps: App[] = [
               name: 'Libraries',
               shape: 'menu',
               note: 'one per library you configured',
+              wayIn: true,
               path: ['A library', 'The books themselves'],
             },
             { name: 'Collections', shape: 'user' },
