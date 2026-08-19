@@ -847,7 +847,7 @@ export const apps: App[] = [
         },
       ],
       note:
-        'Checked in August 2026 against a locally hosted instance of each server, reading the feed each one actually publishes rather than its documentation. Deliberately no item counts: what a tile holds depends entirely on your own library. An empty entry is normal rather than a fault — reading lists, collections and shelves stay empty until you make one on the server, and the “continue reading” style entries fill up only as you read.',
+        'Last checked 19 August 2026. Deliberately no item counts: what a tile holds depends entirely on your own library. An empty entry is normal rather than a fault — reading lists, collections and shelves stay empty until you make one on the server, and the “continue reading” style entries fill up only as you read.',
     },
     faqs: [
       {
