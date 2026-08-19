@@ -98,7 +98,11 @@ export default function ServerStructures({
                     {tile.path && (
                       <ol className={styles.path}>
                         {tile.path.map((step, stepIndex) => (
-                          <li key={`${stepIndex}-${step}`} className={styles.step}>
+                          <li
+                            key={`${stepIndex}-${step}`}
+                            className={styles.step}
+                            style={{ ['--depth' as string]: stepIndex }}
+                          >
                             {step}
                           </li>
                         ))}
